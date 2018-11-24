@@ -1,6 +1,15 @@
-.button {
+.blueButton {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   border: 1px;
+  color: blue;
+}
+
+.greenButton {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 1px;
+  color: green;
 }
