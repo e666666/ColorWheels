@@ -14,5 +14,6 @@ function blueClick() {
     totPower+=blueMult;
     blueTick=0;
     update("powerAmount", totPower);
+    update("blueCircle1", "0/"+blueMax);
   }
 }
