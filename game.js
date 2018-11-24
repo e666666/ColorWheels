@@ -10,14 +10,9 @@ function update(get, set) {
 function blueClick() {
   blueTick++;
   update("blueCircle1", ""+blueTick+"/"+blueMax);
-}
-
-function gameLoop() {
   if(blueTick>=blueMax) {
     totPower+=blueMult;
     blueTick=0;
     update("powerAmount", totPower);
   }
 }
-
-setInterval(gameLoop(), 50); 
