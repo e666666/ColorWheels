@@ -24,5 +24,7 @@ function checkUpgrade1() {
     blueMult++;
     upgrade1Price*=2.5;
     update("upgrade1", "Cost: "+upgrade1Price+" Power");
+    totPower-=10;
+    update("powerAmount", totPower);
   }
 }
