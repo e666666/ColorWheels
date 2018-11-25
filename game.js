@@ -23,6 +23,6 @@ function checkUpgrade1() {
   if(totPower>upgrade1Price){
     blueMult++;
     upgrade1Price*=2.5;
-    update("upgrade1", upgrade1Price);
+    update("upgrade1", "Cost: "+upgrade1Price+" Power");
   }
 }
