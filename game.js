@@ -15,6 +15,7 @@ function blueClick() {
   update("blueCircle", ""+blueTick+"/"+blueMax);
   var mult=1;
   if(blueTick>=blueMax) {
+    alert("It works");
     for(var i=0;i<blueMults.length();i++){
       mult*=blueMults[i];
     }
