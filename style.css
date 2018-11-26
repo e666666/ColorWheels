@@ -3,7 +3,31 @@
   width: 50px;
   border-radius: 50%;
   border: 1px;
-  color: blue;
+  background-color: blue;
+}
+
+.topLayer {
+  z-index: 0;
+  top:0;
+  left: 0;
+}
+
+.layer1 {
+  z-index: -1;
+  top: 10;
+  left: 0;
+}
+
+.layer2 {
+  z-index: -2;
+  top: 20;
+  left: 0;
+}
+
+.layer3 {
+  z-index: -3;
+  top: 30;
+  left: 0;
 }
 
 .greenButton {
@@ -11,13 +35,13 @@
   width: 50px;
   border-radius: 50%;
   border: 1px;
-  color: green;
+  background-color: green;
 }
 
 .upgrade {
-  height: 30px;
-  width: 65px;
+  height: 60px;
+  width: 130px;
   border-radius: 10%;
   border: 2px;
-  color: grey;
+  background-color: grey;
 }
