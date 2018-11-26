@@ -9,9 +9,16 @@
         <div class="wrapper">
             <div id="powerAmount">0</div>
             <div id="testArea">0</div>
-            <button id="blueCircle1" onclick="blueClick()" class="blueButton">0/25</button>
+            <div class="topLayer">
+                <button id="blueCircle" onclick="blueClick()" class="blueButton">0/25</button>
+            </div>
+            <div class="layer1">
+                <button id="blueCircle1" class="blueButton" visibility="hidden"></button>
+            </div>
             <button id="upgrade1" onClick="checkUpgrade1()" class="upgrade">
                 Upgrade your Blue Button<br/>Cost: 10 Power</button>
+            <button id="addBlueButton" onClick="checkAddBlue()" class="upgrade">
+                Add another Blue Button<br/>Cost: 100 Power</button>
         </div>
     </body>
 </html>
