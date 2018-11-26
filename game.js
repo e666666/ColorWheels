@@ -14,10 +14,10 @@ function blueClick() {
   blueTick++;
   update("blueCircle", ""+blueTick+"/"+blueMax);
   var mult=1;
-  for(var i=0;i<blueMults.length();i++){
-    mult*=blueMults[i];
-  }
   if(blueTick>=blueMax) {
+    for(var i=0;i<blueMults.length();i++){
+      mult*=blueMults[i];
+    }
     totPower+=mult;
     blueTick=0;
     update("powerAmount", totPower);
