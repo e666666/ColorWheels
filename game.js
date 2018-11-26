@@ -19,7 +19,6 @@ function blueClick() {
     function getMult(value){
       mult*=value;
     }
-    alert("It works");
     totPower+=mult;
     blueTick=0;
     update("powerAmount", totPower);
