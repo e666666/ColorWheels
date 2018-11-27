@@ -28,7 +28,7 @@ function blueClick() {
 
 function checkUpgrade1(num) {
   var price=upgrade1Price[num-1];
-  if(totPower>price){
+  if(totPower>=price){
     totPower-=price;
     update("powerAmount", totPower);
     blueMults[num-1]=blueMults[num-1]+1;
@@ -39,7 +39,7 @@ function checkUpgrade1(num) {
 }
 
 function checkAddBlue() {
-  if(totPower>addBluePrice){
+  if(totPower>=addBluePrice){
     totPower-=price;
     update("powerAmount", totPower);
     if(blueIndex<9){
