@@ -32,7 +32,7 @@ function checkUpgrade1(num) {
     totPower-=price;
     update("powerAmount", totPower);
     blueMults[num-1]=blueMults[num-1]+1;
-    price*=2.5
+    price=Math.floor(price*2.5);
     upgrade1Price[num-1]=price;
     update("upgrade1", "Upgrade your Blue Button<br/>Cost: "+price+" Power");
   }
