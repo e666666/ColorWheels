@@ -44,7 +44,7 @@ function checkAddBlue() {
     update("powerAmount", totPower);
     if(blueIndex<9){
       blueIndex++;
-      document.getElementById("blueButton"+blueIndex).style.visibility="visible";
+      document.getElementById("blueCircle"+blueIndex).style.visibility="visible";
     }
     blueMults.push(1);
     upgrade1Price.push(100*blueIndex*blueIndex);
