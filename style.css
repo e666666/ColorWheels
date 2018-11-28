@@ -1,3 +1,9 @@
+.wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
 .blueButton {
   height: 50px;
   width: 50px;
@@ -7,12 +13,16 @@
 }
 
 .topLayer {
+  positon: relative;
+  top: 200px;
+  left: 0;
   z-index: 0;
   top:0;
   left: 0;
 }
 
 .layer1 {
+  position: absolute;
   z-index: -1;
   top: 5;
   left: 0;
