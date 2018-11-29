@@ -41,7 +41,8 @@ function checkUpgrade1(num) {
 function checkAddBlue() {
   if(totPower>=addBluePrice){
     totPower-=price;
-    //update("powerAmount", totPower);
+    update("powerAmount", totPower);
+    alert("Hey");
     //if(blueIndex<9){
     //  blueIndex++;
     //  document.getElementById("blueCircle"+blueIndex).style.visibility="visible";
