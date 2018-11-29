@@ -48,5 +48,7 @@ function checkAddBlue() {
     }
     blueMults.push(1);
     upgrade1Price.push(100*blueIndex*blueIndex);
+    addBluePrice*=10
+    update("addBlueButton", "Add another Blue Button<br/>Cost: "+addBluePrice+" Power");
   }
 }
