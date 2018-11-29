@@ -41,13 +41,13 @@ function checkUpgrade1(num) {
 function checkAddBlue() {
   if(totPower>=addBluePrice){
     totPower-=price;
-    update("powerAmount", totPower);
-    if(blueIndex<9){
-      blueIndex++;
-      document.getElementById("blueCircle"+blueIndex).style.visibility="visible";
-    }
-    blueMults.push(1);
-    upgrade1Price.push(100*blueIndex*blueIndex);
+    //update("powerAmount", totPower);
+    //if(blueIndex<9){
+    //  blueIndex++;
+    //  document.getElementById("blueCircle"+blueIndex).style.visibility="visible";
+    //}
+    //blueMults.push(1);
+    //upgrade1Price.push(100*blueIndex*blueIndex);
     addBluePrice*=10
     update("addBlueButton", "Add another Blue Button<br/>Cost: "+addBluePrice+" Power");
   }
