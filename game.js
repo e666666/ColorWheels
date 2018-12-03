@@ -28,11 +28,11 @@ function blueClick() {
 
 function checkUpgrade1(num) {
   var price=upgrade1Price[num-1];
-  if(num==2) alert(price+" is the price. Is it right?");
   if(totPower>=price){
     totPower-=price;
     update("powerAmount", totPower);
     blueMults[num-1]=blueMults[num-1]+1;
+    alert(blueMults[num-1]);
     var name = "blueCircle" + num;
     update(name, "x"+blueMults[num-1]);
     price=Math.floor(price*2.5);
