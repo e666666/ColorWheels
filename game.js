@@ -21,7 +21,7 @@ function shorten(number) {
   if(numSplit.length==1){
     if(number<1000) return number;
     else{
-      numSplit[0]=(first/1000.0).toPrecision(3);
+      numSplit[0]=(number/1000.0).toPrecision(3);
       numSplit[1]=3;
     }
   }
