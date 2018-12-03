@@ -27,11 +27,11 @@ function shorten(number) {
   }
   var first = numSplit[0];
   var second = numSplit[1];
-  if(first>10){
+  while(first>10){
     numSplit[0]=(first/10.0).toPrecision(3);
     numSplit[1]=numSplit[1]/1.0+1;
   }
-  if(first<1.0){
+  while(first<1.0){
     numSplit[0]=(first*10.0).toPrecision(3);
     numSplit[1]=numSplit[1]/1.0-1;
   }
