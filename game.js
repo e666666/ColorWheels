@@ -49,7 +49,7 @@ function checkAddBlue() {
     update("powerAmount", totPower);
     document.getElementById("buttonSet"+blueIndex).style.display="block";
     blueMults.push(1);
-    upgrade1Price.push(price*10);
+    upgrade1Price.push(Math.pow(blueIndex,10));
     addBluePrice*=10
     update("addBlueButton", "Add another Blue Button<br/>Cost: "+addBluePrice+" Power");
   }
