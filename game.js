@@ -11,7 +11,6 @@ function update(get, set) {
 }
 
 function shorten(number) {
-  alert(number);
   var numSplit = number.split("e");
   if(numSplit.length==1) return number;
   var first = numSplit[0];
