@@ -12,7 +12,7 @@ function update(get, set) {
 
 function blueClick() {
   blueTick++;
-  update("blueCircle", ""+blueTick+"/"+blueMax);
+  update("blueCycle", ""+blueTick+"/"+blueMax);
   var mult=1;
   if(blueTick>=blueMax) {
     blueMults.forEach(getMult);
@@ -22,7 +22,7 @@ function blueClick() {
     totPower+=mult;
     blueTick=0;
     update("powerAmount", totPower);
-    update("blueCircle", "0/"+blueMax);
+    update("blueCycle", "0/"+blueMax);
   }
 }
 
@@ -32,6 +32,9 @@ function checkUpgrade1(num) {
     totPower-=price;
     update("powerAmount", totPower);
     blueMults[num-1]=blueMults[num-1]+1;
+    var x = num-1;
+    var name = "blueButton" + x;
+    update(name, "x"+blueMults[num-1]);
     price=Math.floor(price*2.5);
     upgrade1Price[num-1]=price;
     update("upgrade1", "Upgrade your Blue Button<br/>Cost: "+price+" Power");
@@ -42,8 +45,7 @@ function checkAddBlue() {
   if(totPower>=addBluePrice){
     totPower-=addBluePrice;
     update("powerAmount", totPower);
-    document.getElementById("blueCircle1").style.visibility="visible";
-    alert("Hey");
+    document.getElementById("secondButtonSet").style.display="block";
     blueMults.push(1);
     upgrade1Price.push(100*blueIndex*blueIndex);
     addBluePrice*=10
