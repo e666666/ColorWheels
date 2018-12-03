@@ -1,5 +1,6 @@
 function shorten(number) {
   var numSplit = number.split("e");
+  alert(numSplit);
   if(numSplit.length==1) return number;
   var first = numSplit[0];
   var second = numSplit[1];
