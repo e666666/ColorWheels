@@ -32,8 +32,8 @@ function checkUpgrade1(num) {
     totPower-=price;
     update("powerAmount", totPower);
     blueMults[num-1]=blueMults[num-1]+1;
-    alert(blueMults[num-1]);
     var name = "blueCircle" + num;
+    alert(name);
     update(name, "x"+blueMults[num-1]);
     price=Math.floor(price*2.5);
     upgrade1Price[num-1]=price;
