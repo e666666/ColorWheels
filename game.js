@@ -12,7 +12,8 @@ function update(get, set) {
 
 function testShorten(){
   var num = prompt("Please enter the number to shorten.");
-  alert(shorten(num));
+  num = shorten(num);
+  update("test",num);
 }
 
 function blueClick() {
