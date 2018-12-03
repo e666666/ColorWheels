@@ -44,7 +44,7 @@ function checkAddBlue() {
     update("powerAmount", totPower);
     if(blueIndex<9){
       blueIndex++;
-      document.getElementById("blueCircle"+blueIndex).style.visibility="visible";
+      document.getElementById("blueCircle1").style.visibility="visible";
     }
     alert("Hey");
     blueMults.push(1);
