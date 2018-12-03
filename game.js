@@ -1,5 +1,5 @@
 var blueTick = 0;
-var blueMax = 25;
+var blueMax = 5;
 var totPower = 0;
 var blueMults = [1];
 var upgrade1Price = [10];
@@ -28,6 +28,7 @@ function blueClick() {
 
 function checkUpgrade1(num) {
   var price=upgrade1Price[num-1];
+  if(num==2) alert(price+" is the price. Is it right?");
   if(totPower>=price){
     totPower-=price;
     update("powerAmount", totPower);
