@@ -9,13 +9,14 @@
         <div class="wrapper">
             <div id="powerAmount">0</div>
             <div id="testArea">0</div>
+            <div id="blueCycle">0/25</div>
             <div class="topLayer">
-                <button id="blueCircle" onclick="blueClick()" class="blueButton">0/25</button>
+                <button id="blueCircle1" onClick="blueClick()" class="blueButton">x1</button>
                 <button id="upgrade1" onClick="checkUpgrade1(1)" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 10 Power</button>
             </div>
-            <div class="topLayer" style="visibility: hidden">
-                <button id="blueCircle1" class="blueButton"></button>
+            <div id="secondButtonSet" class="topLayer" style="display: none">
+                <button id="blueCircle2" onClick="blueClick()" class="blueButton">x1</button>
                 <button id="upgrade2" onClick="checkUpgrade1(2)" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 1000 Power</button>
             </div>
