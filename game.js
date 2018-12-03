@@ -104,8 +104,8 @@ function bigBigger(num1,num2){
 }
 
 function blueClick() {
-  blueTick++;
   alert("yep");
+  blueTick++;
   update("blueCycle", ""+blueTick+"/"+blueMax);
   var mult=1;
   if(blueTick>=blueMax) {
