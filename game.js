@@ -42,10 +42,7 @@ function checkAddBlue() {
   if(totPower>=addBluePrice){
     totPower-=addBluePrice;
     update("powerAmount", totPower);
-    if(blueIndex<9){
-      blueIndex++;
-      document.getElementById("blueCircle1").style.visibility="visible";
-    }
+    document.getElementById("blueCircle1").style.visibility="visible";
     alert("Hey");
     blueMults.push(1);
     upgrade1Price.push(100*blueIndex*blueIndex);
