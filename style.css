@@ -1,12 +1,12 @@
-.wrapper {
+6.wrapper {
   position: relative;
   top: 0;
   left: 0;
 }
 
 .blueButton {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
   border: 1px;
   background-color: blue;
@@ -41,8 +41,8 @@
 }
 
 .greenButton {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
   border: 1px;
   background-color: green;
