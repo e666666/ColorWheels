@@ -4,7 +4,7 @@ var totPower = 0;
 var blueMults = [1];
 var upgrade1Price = [10];
 var addBluePrice = 100; 
-var blueIndex = 0;
+var blueIndex = 1;
 
 function update(get, set) {
   document.getElementById(get).innerHTML=set;
@@ -45,9 +45,9 @@ function checkAddBlue() {
     totPower-=addBluePrice;
     blueIndex++;
     update("powerAmount", totPower);
-    document.getElementById("secondButtonSet").style.display="block";
+    document.getElementById("buttonSet"+blueIndex).style.display="block";
     blueMults.push(1);
-    upgrade1Price.push(100*blueIndex*blueIndex);
+    upgrade1Price.push(upgrade1Price[blueIndex-1]*10);
     addBluePrice*=10
     update("addBlueButton", "Add another Blue Button<br/>Cost: "+addBluePrice+" Power");
   }
