@@ -10,6 +10,11 @@ function update(get, set) {
   document.getElementById(get).innerHTML=set;
 }
 
+function testShorten(){
+  var num = prompt("Please enter the number to shorten.");
+  alert(shorten(num));
+}
+
 function blueClick() {
   blueTick++;
   update("blueCycle", ""+blueTick+"/"+blueMax);
@@ -23,7 +28,6 @@ function blueClick() {
     //totPower=bigAdd(totPower,mult,1);
     totPower+=mult;
     blueTick=0;
-    totPower = shorten(totPower);
     update("powerAmount", totPower);
     update("blueCycle", "0/"+blueMax);
   }
