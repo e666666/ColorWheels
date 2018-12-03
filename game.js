@@ -23,7 +23,7 @@ function blueClick() {
     //totPower=bigAdd(totPower,mult,1);
     totPower+=mult;
     blueTick=0;
-    update("powerAmount", totPower);
+    update("powerAmount", shorten(totPower));
     update("blueCycle", "0/"+blueMax);
   }
 }
