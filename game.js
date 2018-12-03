@@ -10,6 +10,23 @@ function update(get, set) {
   document.getElementById(get).innerHTML=set;
 }
 
+function shorten(number) {
+  alert(number);
+  var numSplit = number.split("e");
+  if(numSplit.length==1) return number;
+  var first = numSplit[0];
+  var second = numSplit[1];
+  if(first>10){
+    numSplit[0]=(first/10.0).toPrecision(3);
+    numSplit[1]=numSplit[1]+1;
+  }
+  if(first<1.0){
+    numSplit[0]=(first*10.0).toPrecision(3);
+    numSplit[1]=numSplit[1]-1;
+  }
+  return ""+numSplit[0]+"e"+numSplit[1];
+}
+
 function testShorten(){
   var num = prompt("Please enter the number to shorten.");
   num = shorten(num);
