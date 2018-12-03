@@ -29,7 +29,7 @@ function shorten(number) {
 function testShorten(){
   var num = prompt("Please enter the number to shorten.");
   num = shorten(num);
-  update("test",num);
+  update("testArea",num);
 }
 
 function blueClick() {
