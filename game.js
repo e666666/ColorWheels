@@ -10,6 +10,23 @@ function update(get, set) {
   document.getElementById(get).innerHTML=set;
 }
 
+function blueClick() {
+  alert("yep");
+  blueTick++;
+  update("blueCycle", ""+blueTick+"/"+blueMax);
+  var mult=1;
+  if(blueTick>=blueMax) {
+    blueMults.forEach(getMult);
+    function getMult(value){
+      mult=bigMult(mult,value,1);
+    }
+    totPower=bigAdd(totPower,mult,1);
+    blueTick=0;
+    update("powerAmount", totPower);
+    update("blueCycle", "0/"+blueMax);
+  }
+}
+
 function shorten(number) {
   var numSplit = number.split("e");
   if(numSplit.length==1) return number;
@@ -100,23 +117,6 @@ function bigBigger(num1,num2){
   else if(second1==second2){
     if(first2>first1) return false;
     else return true;
-  }
-}
-
-function blueClick() {
-  alert("yep");
-  blueTick++;
-  update("blueCycle", ""+blueTick+"/"+blueMax);
-  var mult=1;
-  if(blueTick>=blueMax) {
-    blueMults.forEach(getMult);
-    function getMult(value){
-      mult=bigMult(mult,value,1);
-    }
-    totPower=bigAdd(totPower,mult,1);
-    blueTick=0;
-    update("powerAmount", totPower);
-    update("blueCycle", "0/"+blueMax);
   }
 }
 
