@@ -16,30 +16,6 @@ function testShorten(){
   update("testArea",num);
 }
 
-function shorten(number) {
-  var numSplit = number.split("e");
-  if(numSplit.length==1){
-    if(number<1000) return number;
-    else{
-      numSplit[0]=(number/1000.0).toPrecision(3);
-      numSplit[1]=3;
-    }
-  }
-  var first = numSplit[0];
-  var second = numSplit[1];
-  while(first>10){
-    numSplit[0]=(first/10.0).toPrecision(3);
-    numSplit[1]=numSplit[1]/1.0+1;
-    first/=10.0;
-  }
-  while(first<1.0){
-    numSplit[0]=(first*10.0).toPrecision(3);
-    numSplit[1]=numSplit[1]/1.0-1;
-    first*=10.0;
-  }
-  return ""+numSplit[0]+"e"+numSplit[1];
-}
-
 function blueClick() {
   blueTick++;
   update("blueCycle", ""+blueTick+"/"+blueMax);
