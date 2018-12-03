@@ -10,6 +10,12 @@ function update(get, set) {
   document.getElementById(get).innerHTML=set;
 }
 
+function testShorten(){
+  var num = prompt("Please enter the number to shorten.");
+  num = shorten(num);
+  update("testArea",num);
+}
+
 function shorten(number) {
   var numSplit = number.split("e");
   if(numSplit.length==1){
@@ -30,12 +36,6 @@ function shorten(number) {
     numSplit[1]=numSplit[1]/1.0-1;
   }
   return ""+numSplit[0]+"e"+numSplit[1];
-}
-
-function testShorten(){
-  var num = prompt("Please enter the number to shorten.");
-  num = shorten(num);
-  update("testArea",num);
 }
 
 function blueClick() {
