@@ -43,7 +43,7 @@ function checkUpgrade1(num) {
 function checkAddBlue() {
   if(totPower>=addBluePrice){
     totPower-=addBluePrice;
-    var price=upgrade1Price[blueIndex];
+    var price=upgrade1Price[blueIndex-1];
     blueIndex++;
     update("powerAmount", totPower);
     document.getElementById("buttonSet"+blueIndex).style.display="block";
