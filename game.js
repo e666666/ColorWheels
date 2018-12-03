@@ -40,7 +40,7 @@ function checkUpgrade1(num) {
 
 function checkAddBlue() {
   if(totPower>=addBluePrice){
-    totPower-=price;
+    totPower-=addBluePrice;
     update("powerAmount", totPower);
     alert("Hey");
     //if(blueIndex<9){
