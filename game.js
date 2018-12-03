@@ -30,10 +30,12 @@ function shorten(number) {
   while(first>10){
     numSplit[0]=(first/10.0).toPrecision(3);
     numSplit[1]=numSplit[1]/1.0+1;
+    first/=10.0;
   }
   while(first<1.0){
     numSplit[0]=(first*10.0).toPrecision(3);
     numSplit[1]=numSplit[1]/1.0-1;
+    first*=10.0;
   }
   return ""+numSplit[0]+"e"+numSplit[1];
 }
