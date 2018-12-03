@@ -33,6 +33,7 @@ function sep(num){
   if(numSplit.length==1) answer[1] = 0;
   else{ answer[1] = numSplit[1];}
   return answer;
+}
 
 function bigAdd(num1, num2, sign){
   var first1 = sep(num1)[0];
