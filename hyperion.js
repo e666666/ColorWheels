@@ -1,4 +1,5 @@
 function shorten(number) {
+  if(typeOf number != 'string') number = number.toString();
   var numSplit = number.split("e");
   if(numSplit.length==1){
     if(number<1000) return number;
