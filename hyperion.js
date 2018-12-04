@@ -44,7 +44,7 @@ function bigAdd(num1, num2, sign){
     else{
       if(sign==1) answer1 = first1*Math.pow(10,diff) + first2;
       else answer1 = first1*Math.pow(10,diff) - first2;
-      answer2 = second1;
+      answer2 = second2;
     }
   }
   else if(second2>second1){
@@ -53,7 +53,7 @@ function bigAdd(num1, num2, sign){
     else{
       if(sign==1) answer1 = first2*Math.pow(10,diff) + first1;
       else answer1 = first2*Math.pow(10,diff) - first1;
-      answer2 = second2;
+      answer2 = second1;
     }
   }
   else if(second1==second2){
