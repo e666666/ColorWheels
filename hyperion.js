@@ -65,6 +65,7 @@ function bigAdd(num1, num2, sign){
     answer2 = second1;
   }
   var answer = ""+answer1+"e"+answer2;
+  alert(answer);
   return shorten(answer);
 }
 
