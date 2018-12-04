@@ -72,6 +72,8 @@ function bigAdd(num1, num2, sign){
 }
 
 function bigMult(num1, num2, sign){
+  num1=shorten(num1);
+  num2=shorten(num2);
   var first1 = sep(num1)[0];
   var second1 = sep(num1)[1];
   var first2 = sep(num2)[0];
@@ -86,6 +88,7 @@ function bigMult(num1, num2, sign){
     answer1 = first1/first2;
     answer2 = second1-second2;
   }
+  var answer = ""+answer1+"e"+answer2;
   return shorten(answer);
 }
 
