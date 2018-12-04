@@ -23,7 +23,7 @@ function shorten(number) {
 }
 
 function sep(num){
-  int[] answer = new int[2];
+  var answer = new int[2];
   var numSplit = num.split("e");
   answer[0] = numSplit[0];
   if(numSplit.length==1) answer[1] = 0;
