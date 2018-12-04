@@ -74,10 +74,10 @@ function bigAdd(num1, num2, sign){
 function bigMult(num1, num2, sign){
   num1=shorten(num1);
   num2=shorten(num2);
-  var first1 = sep(num1)[0];
-  var second1 = sep(num1)[1];
-  var first2 = sep(num2)[0];
-  var second2 = sep(num2)[1];
+  var first1 = parseFloat(sep(num1)[0]);
+  var second1 = parseFloat(sep(num1)[1]);
+  var first2 = parseFloat(sep(num2)[0]);
+  var second2 = parseFloat(sep(num2)[1]);
   var answer1 = 0;
   var answer2 = 0;
   if(sign==1){
