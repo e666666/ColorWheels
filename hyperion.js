@@ -36,8 +36,8 @@ function bigAdd(num1, num2, sign){
   var second1 = parseFloat(sep(num1)[1]);
   var first2 = parseFloat(sep(num2)[0]);
   var second2 = parseFloat(sep(num2)[1]);
-  var answer1 = 0;
-  var answer2 = 0;
+  var answer1 = 0.0;
+  var answer2 = 0.0;
   if(second1>second2){
     var diff = second1-second2;
     if(diff>3) return num1;
