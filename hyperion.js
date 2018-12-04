@@ -32,10 +32,10 @@ function sep(num){
 }
 
 function bigAdd(num1, num2, sign){
-  var first1 = sep(num1)[0];
-  var second1 = sep(num1)[1];
-  var first2 = sep(num2)[0];
-  var second2 = sep(num2)[1];
+  var first1 = sep(num1)[0]*1.0;
+  var second1 = sep(num1)[1]*1.0;
+  var first2 = sep(num2)[0]*1.0;
+  var second2 = sep(num2)[1]*1.0;
   var answer1 = 0;
   var answer2 = 0;
   if(second1>second2){
