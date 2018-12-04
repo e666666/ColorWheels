@@ -93,10 +93,10 @@ function bigMult(num1, num2, sign){
 }
 
 function bigBigger(num1,num2){
-  var first1 = sep(num1)[0];
-  var second1 = sep(num1)[1];
-  var first2 = sep(num2)[0];
-  var second2 = sep(num2)[1];
+  var first1 = parseFloat(sep(num1)[0]);
+  var second1 = parseFloat(sep(num1)[1]);
+  var first2 = parseFloat(sep(num2)[0]);
+  var second2 = parseFloat(sep(num2)[1]);
   if(second1>second2) return true;
   else if(second2>second1) return false;
   else if(second1==second2){
