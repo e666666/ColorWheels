@@ -13,7 +13,7 @@ function update(get, set) {
 function testStuff(){
   var num = prompt("Please enter the numbers to work with. Comma separated.");
   var nums = num.split(",");
-  num = bigAdd(nums[0],nums[1]);
+  num = bigAdd(nums[0],nums[1],1);
   update("testArea",num);
 }
 
