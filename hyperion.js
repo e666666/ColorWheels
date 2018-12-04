@@ -56,7 +56,7 @@ function bigAdd(num1, num2, sign){
       answer2 = second2;
     }
   }
-  else{
+  else if(second1==second2){
     if(sign==1) answer1 = first1+first2;
     else{
       if(first1>first2) answer1 = first1 - first2;
