@@ -14,7 +14,7 @@ function shorten(number) {
     numSplit[1]=numSplit[1]/1.0+1;
     first/=10.0;
   }
-  while(first<1.0){
+  while(first<1){
     numSplit[0]=(first*10.0).toPrecision(3);
     numSplit[1]=numSplit[1]/1.0-1;
     first*=10.0;
