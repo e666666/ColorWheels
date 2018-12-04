@@ -32,6 +32,8 @@ function sep(num){
 }
 
 function bigAdd(num1, num2, sign){
+  num1=shorten(num1);
+  num2=shorten(num2);
   var first1 = parseFloat(sep(num1)[0]);
   var second1 = parseFloat(sep(num1)[1]);
   var first2 = parseFloat(sep(num2)[0]);
@@ -42,8 +44,8 @@ function bigAdd(num1, num2, sign){
     var diff = second1-second2;
     if(diff>3) return num1;
     else{
-      if(sign==1) answer1 = parseFloat(first1*Math.pow(10,diff)) + parseFloat(first2);
-      else answer1 = parseFloat(first1*Math.pow(10,diff)) - parseFloat(first2);
+      if(sign==1) answer1 = first1*Math.pow(10,diff) + first2;
+      else answer1 = first1*Math.pow(10,diff) - first2;
       answer2 = second2;
     }
   }
@@ -51,8 +53,8 @@ function bigAdd(num1, num2, sign){
     var diff = second2-second1;
     if(diff>3) return num2;
     else{
-      if(sign==1) answer1 = parseFloat(first2*Math.pow(10,diff)) + parseFloat(first1);
-      else answer1 = parseFloat(first2*Math.pow(10,diff)) - parseFloat(first1);
+      if(sign==1) answer1 = first2*Math.pow(10,diff) + first1;
+      else answer1 = first2*Math.pow(10,diff) - first1;
       answer2 = second1;
     }
   }
