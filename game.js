@@ -12,8 +12,8 @@ function update(get, set) {
 
 function testShorten(){
   var num = prompt("Please enter the number to shorten.");
-  num = shorten(num);
   alert("wut");
+  num = shorten(num);
   update("testArea",num);
 }
 
