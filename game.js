@@ -39,7 +39,7 @@ function checkUpgrade1(num) {
   var price=upgrade1Price[num-1];
   if(bigBigger(totPower,price)){
   //if(totPower>price){
-    bigAdd(totPower,price,0);
+    totPower=bigAdd(totPower,price,0);
     //totPower-=price;
     update("powerAmount", totPower);
     blueMults[num-1]=blueMults[num-1]+1;
@@ -55,7 +55,7 @@ function checkUpgrade1(num) {
 function checkAddBlue() {
   if(bigBigger(totPower,addBlueprice)){
   //if(totPower>addBluePrice){
-    bigAdd(totPower,addBluePrice,0);
+    totPower=bigAdd(totPower,addBluePrice,0);
     //totPower-=addBluePrice;
     blueIndex++;
     update("powerAmount", totPower);
