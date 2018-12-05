@@ -63,7 +63,7 @@ function checkAddBlue() {
     blueMults.push(1);
     upgrade1Price.push("1e"+blueIndex);
     //upgrade1Price.push(Math.pow(10,blueIndex));
-    bigMult(addBluePrice,10,1);
+    addBluePrice=bigMult(addBluePrice,10,1);
     //addBluePrice*=10;
     update("addBlueButton", "Add another Blue Button<br/>Cost: "+addBluePrice+" Power");
   }
