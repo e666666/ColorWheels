@@ -3,9 +3,9 @@ function shorten(number) {
   number = ""+number;
   var numSplit = number.split("e");
   if(numSplit.length==1){
-    if(number<1000) return number;
+    if(number<1000) return (Math.round(number*100)/100;
     else{
-      numSplit[0]=(number/1000.0).toPrecision(9);
+      numSplit[0]=(Math.round(number)/1000;
       numSplit[1]=3;
     }
   }
@@ -30,9 +30,9 @@ function display(number){
   number = ""+number;
   var numSplit = number.split("e");
   if(numSplit.length==1){
-    if(number<1000) return (number*10)/10;
+    if(number<1000) return (Math.round(number*100))/100;
     else{
-      numSplit[0]=(number/1000.0).toPrecision(3);
+      numSplit[0]=Math.round(number)/1000.0;
       numSplit[1]=3;
     }
   }
