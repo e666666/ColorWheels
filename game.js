@@ -1,5 +1,5 @@
 var blueTick = 0;
-var blueMax = 5;
+var blueMax = 1000;
 var totPower = 0;
 var blueMults = [1];
 var upgrade1Price = [10];
@@ -17,9 +17,15 @@ function testStuff(){
   update("testArea",num);
 }
 
+function gameCycle(){
+  if(blueTick<1000){
+    blueTick+=10;
+    update("blueCycle", ""+blueTick+"/"+blueMax);
+    changeButtonOpacity(blueTick/10);
+  }
+}
+
 function blueClick() {
-  blueTick++;
-  update("blueCycle", ""+blueTick+"/"+blueMax);
   var mult=1;
   if(blueTick>=blueMax) {
     blueMults.forEach(getMult);
@@ -31,8 +37,16 @@ function blueClick() {
     //totPower+=mult;
     blueTick=0;
     update("powerAmount", display(totPower));
+    blueTick=0;
     update("blueCycle", "0/"+blueMax);
   }
+}
+
+function changeButtonOpacity(num) {
+    var buttons = document.getElementsByClassName("blueButton");
+    for(i=0; i<buttons.length; i++) {
+      buttons[i].style.opacity = num;
+    }
 }
 
 function checkUpgrade1(num) {
@@ -77,4 +91,8 @@ function checkAddBlue() {
     //addBluePrice*=10;
     update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
   }
+}
+
+function startCycle(){
+  setInterval(10, gameCycle());
 }
