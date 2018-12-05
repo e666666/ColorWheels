@@ -21,8 +21,7 @@ function shorten(number) {
     numSplit[1]=numSplit[1]/1.0-1;
     first*=10.0;
   }
-  var x=numSplit[0];
-  numSplit[0]=x.toPrecision(3);
+  numSplit[0]=(numSplit[0]*1.0).toPrecision(3);
   if(numSplit[1]<3) return numSplit[0]*Math.pow(10,numSplit[1]);
   return ""+numSplit[0]+"e"+numSplit[1];
 }
