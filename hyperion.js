@@ -38,7 +38,7 @@ function display(number){
   }
   numSplit[0]=numSplit[0].slice(0,3);
   return ""+numSplit[0]+"e"+numSplit[1];
-  
+}
 
 function sep(num){
   num=""+num;
