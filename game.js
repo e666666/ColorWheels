@@ -94,5 +94,5 @@ function checkAddBlue() {
 }
 
 function startCycle(){
-  setInterval(10, gameCycle());
+  setInterval(gameCycle(), 10);
 }
