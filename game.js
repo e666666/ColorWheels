@@ -20,7 +20,7 @@ function testStuff(){
 function gameCycle(){
   if(blueTick<1000){
     blueTick+=10;
-    update("blueCycle", ""+blueTick+"/"+blueMax);
+    update("blueCycle", "Reset Cycle: "+blueTick+"/"+blueMax);
     changeButtonOpacity(blueTick/10);
   }
   for(i=0;i<upgrade1Price.length;i++){
@@ -48,9 +48,9 @@ function blueClick() {
     totPower=bigAdd(totPower,mult,1);
     //totPower+=mult;
     blueTick=0;
-    update("powerAmount", display(totPower));
+    update("powerAmount", "Total Power: "+display(totPower));
     blueTick=0;
-    update("blueCycle", "0/"+blueMax);
+    update("blueCycle", "Reset Cycle: 0/"+blueMax);
   }
 }
 
@@ -67,7 +67,7 @@ function checkUpgrade1(num) {
   //if(totPower>price){
     totPower=bigAdd(totPower,price,0);
     //totPower-=price;
-    update("powerAmount", display(totPower));
+    update("powerAmount", "Total Power: "+display(totPower));
     blueMults[num-1]=blueMults[num-1]+1;
     var name = "blueCircle" + num;
     update(name, "x"+blueMults[num-1]);
@@ -83,7 +83,7 @@ function checkUpgrade1(num) {
       //mult*=value;
     }
     var dispMult = display(mult);
-    update("powerMultArea", "x"+dispMult);
+    update("powerMultArea", "Button Mult: x"+dispMult);
   }
 }
 
@@ -93,7 +93,7 @@ function checkAddBlue() {
     totPower=bigAdd(totPower,addBluePrice,0);
     //totPower-=addBluePrice;
     blueIndex++;
-    update("powerAmount", display(totPower));
+    update("powerAmount", "Total Power: "+display(totPower));
     document.getElementById("buttonSet"+blueIndex).style.display="block";
     blueMults.push(1);
     upgrade1Price.push("1e"+blueIndex);
