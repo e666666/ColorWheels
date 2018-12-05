@@ -27,11 +27,10 @@ function blueClick() {
       mult=bigMult(mult,value,1);
       //mult*=value;
     }
-    totPower=(bigAdd(totPower,mult,1)*1.0).toPrecision(9);
+    totPower=bigAdd(totPower,mult,1);
     //totPower+=mult;
     blueTick=0;
-    var displayedPower=(totPower*1.0).toPrecision(3);
-    update("powerAmount", displayedPower);
+    update("powerAmount", display(totPower));
     update("blueCycle", "0/"+blueMax);
   }
 }
@@ -42,13 +41,14 @@ function checkUpgrade1(num) {
   //if(totPower>price){
     totPower=bigAdd(totPower,price,0);
     //totPower-=price;
-    update("powerAmount", totPower);
+    update("powerAmount", display(totPower));
     blueMults[num-1]=blueMults[num-1]+1;
     var name = "blueCircle" + num;
     update(name, "x"+blueMults[num-1]);
     price=bigMult(price,2.5,1);
     //price=Math.floor(price*2.5);
     upgrade1Price[num-1]=price;
+    price=display(price);
     update("upgrade"+num, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
     var mult = 1;
     blueMults.forEach(getMult);
@@ -56,7 +56,8 @@ function checkUpgrade1(num) {
       mult=bigMult(mult,value,1);
       //mult*=value;
     }
-    update("powerMultArea", "x"+mult);
+    var dispMult = display(mult);
+    update("powerMultArea", "x"+dispMult);
   }
 }
 
@@ -72,7 +73,8 @@ function checkAddBlue() {
     upgrade1Price.push("1e"+blueIndex);
     //upgrade1Price.push(Math.pow(10,blueIndex));
     addBluePrice=bigMult(addBluePrice,10,1);
+    var dispAddBluePrice = display(addBluePrice);
     //addBluePrice*=10;
-    update("addBlueButton", "Add another Blue Button<br/>Cost: "+addBluePrice+" Power");
+    update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
   }
 }
