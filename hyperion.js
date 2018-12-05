@@ -1,5 +1,5 @@
 function shorten(number) {
-  if(number==0) return number;
+  if(number==0) return 0;
   number = ""+number;
   var numSplit = number.split("e");
   if(numSplit.length==1){
