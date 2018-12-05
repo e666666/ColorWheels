@@ -20,7 +20,7 @@ function shorten(number) {
     numSplit[1]=numSplit[1]/1.0-1;
     first*=10.0;
   }
-  if(second<3) return first*Math.pow(10,second);
+  if(numSplit[1]<3) return numSplit[0]*Math.pow(10,numSplit[1]);
   return ""+numSplit[0]+"e"+numSplit[1];
 }
 
