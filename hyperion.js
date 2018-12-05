@@ -107,6 +107,7 @@ function bigMult(num1, num2, sign){
     answer1 = first1/first2;
     answer2 = second1-second2;
   }
+  if((answer1<1000)&&(answer2==0)) answer1=Math.round(answer);
   var answer = ""+answer1+"e"+answer2;
   return shorten(answer);
 }
