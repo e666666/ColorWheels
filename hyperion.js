@@ -11,7 +11,7 @@ function shorten(number) {
   }
   var first = numSplit[0];
   var second = numSplit[1];
-  while(first>10){
+  while(first>=10){
     numSplit[0]=(first/10.0);
     numSplit[1]=numSplit[1]/1.0+1;
     first/=10.0;
