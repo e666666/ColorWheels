@@ -23,6 +23,12 @@ function gameCycle(){
     update("blueCycle", ""+blueTick+"/"+blueMax);
     changeButtonOpacity(blueTick/10);
   }
+  for(i=0;i<upgrade1Price.length;i++){
+    if(totPower>upgrade1Price[i]) document.getElementById("upgrade"+i).style.opacity = 1.0;
+    else document.getElementById("upgrade"+1).style.opacity = 0.6;
+  }
+  if(totPower>addBluePrice) document.getElementById("addBlueButton").style.opacity = 1.0;
+  else document.getElementById("addBlueButton").style.opacity = 0.6;
 }
 
 function blueClick() {
