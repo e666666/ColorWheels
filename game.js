@@ -27,10 +27,11 @@ function blueClick() {
       mult=bigMult(mult,value,1);
       //mult*=value;
     }
-    totPower=(bigAdd(totPower,mult,1)*1.0).toPrecision(3);
+    totPower=(bigAdd(totPower,mult,1)*1.0).toPrecision(9);
     //totPower+=mult;
     blueTick=0;
-    update("powerAmount", totPower);
+    var displayedPower=totPower.toPrecision(3);
+    update("powerAmount", displayedPower);
     update("blueCycle", "0/"+blueMax);
   }
 }
@@ -49,6 +50,13 @@ function checkUpgrade1(num) {
     //price=Math.floor(price*2.5);
     upgrade1Price[num-1]=price;
     update("upgrade"+num, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
+    var mult = 1;
+    blueMults.forEach(getMult);
+    function getMult(value){
+      mult=bigMult(mult,value,1);
+      //mult*=value;
+    }
+    update("powerMultArea", "x"+mult);
   }
 }
 
