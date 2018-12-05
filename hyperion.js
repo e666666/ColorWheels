@@ -30,7 +30,7 @@ function display(number){
   number = ""+number;
   var numSplit = number.split("e");
   if(numSplit.length==1){
-    if(number<1000) return number;
+    if(number<1000) return (number*10)/10;
     else{
       numSplit[0]=(number/1000.0).toPrecision(3);
       numSplit[1]=3;
