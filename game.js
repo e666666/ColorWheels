@@ -27,7 +27,7 @@ function blueClick() {
       mult=bigMult(mult,value,1);
       //mult*=value;
     }
-    totPower=bigAdd(totPower,mult,1);
+    totPower=(bigAdd(totPower,mult,1)*1.0).toPrecision(3);
     //totPower+=mult;
     blueTick=0;
     update("powerAmount", totPower);
