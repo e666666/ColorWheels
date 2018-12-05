@@ -30,7 +30,7 @@ function blueClick() {
     totPower=(bigAdd(totPower,mult,1)*1.0).toPrecision(9);
     //totPower+=mult;
     blueTick=0;
-    var displayedPower=totPower.toPrecision(3);
+    var displayedPower=(totPower*1.0).toPrecision(3);
     update("powerAmount", displayedPower);
     update("blueCycle", "0/"+blueMax);
   }
