@@ -25,6 +25,7 @@ function shorten(number) {
 }
 
 function sep(num){
+  num=""+num;
   var answer = new Array(2);
   var numSplit = num.split("e");
   answer[0] = numSplit[0];
