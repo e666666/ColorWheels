@@ -67,7 +67,7 @@ function checkAddBlue() {
     totPower=bigAdd(totPower,addBluePrice,0);
     //totPower-=addBluePrice;
     blueIndex++;
-    update("powerAmount", totPower);
+    update("powerAmount", display(totPower));
     document.getElementById("buttonSet"+blueIndex).style.display="block";
     blueMults.push(1);
     upgrade1Price.push("1e"+blueIndex);
