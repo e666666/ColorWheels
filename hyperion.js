@@ -5,23 +5,23 @@ function shorten(number) {
   if(numSplit.length==1){
     if(number<1000) return number;
     else{
-      numSplit[0]=(number/1000.0).toPrecision(3);
+      numSplit[0]=(number/1000.0).toPrecision(9);
       numSplit[1]=3;
     }
   }
   var first = numSplit[0];
   var second = numSplit[1];
   while(first>10){
-    numSplit[0]=(first/10.0).toPrecision(3);
+    numSplit[0]=(first/10.0).toPrecision(9);
     numSplit[1]=numSplit[1]/1.0+1;
     first/=10.0;
   }
   while(first<1){
-    numSplit[0]=(first*10.0).toPrecision(3);
+    numSplit[0]=(first*10.0).toPrecision(9);
     numSplit[1]=numSplit[1]/1.0-1;
     first*=10.0;
   }
-  numSplit[0]=(numSplit[0]*1.0).toPrecision(3);
+  numSplit[0]=(numSplit[0]*1.0).toPrecision(9);
   if(numSplit[1]<3) return numSplit[0]*Math.pow(10,numSplit[1]);
   return ""+numSplit[0]+"e"+numSplit[1];
 }
@@ -47,7 +47,7 @@ function bigAdd(num1, num2, sign){
   var answer2 = 0.0;
   if(second1>second2){
     var diff = second1-second2;
-    if(diff>3) return num1;
+    if(diff>9) return num1;
     else{
       if(sign==1) answer1 = first1*Math.pow(10,diff) + first2;
       else answer1 = first1*Math.pow(10,diff) - first2;
@@ -56,7 +56,7 @@ function bigAdd(num1, num2, sign){
   }
   else if(second2>second1){
     var diff = second2-second1;
-    if(diff>3) return num2;
+    if(diff>9) return num2;
     else{
       if(sign==1) answer1 = first2*Math.pow(10,diff) + first1;
       else answer1 = first2*Math.pow(10,diff) - first1;
