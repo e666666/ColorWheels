@@ -3,9 +3,9 @@ function shorten(number) {
   number = ""+number;
   var numSplit = number.split("e");
   if(numSplit.length==1){
-    if(number<1000) return (Math.round(number*100)/100;
+    if(number<1000) return Math.round(number*100)/100;
     else{
-      numSplit[0]=(Math.round(number)/1000;
+      numSplit[0]=Math.round(number)/1000;
       numSplit[1]=3;
     }
   }
