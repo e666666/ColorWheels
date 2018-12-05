@@ -53,7 +53,7 @@ function checkUpgrade1(num) {
 }
 
 function checkAddBlue() {
-  if(bigBigger(totPower,addBlueprice)){
+  if(bigBigger(totPower,addBluePrice)){
   //if(totPower>addBluePrice){
     totPower=bigAdd(totPower,addBluePrice,0);
     //totPower-=addBluePrice;
