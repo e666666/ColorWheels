@@ -24,7 +24,7 @@ function gameCycle(){
     changeButtonOpacity(blueTick/10);
   }
   for(i=0;i<upgrade1Price.length;i++){
-    if(totPower>=upgrade1Price[i]){
+    if(bigBigger(totPower,upgrade1Price[i])){
       var j = i+1;
       document.getElementById("upgrade"+j).style.opacity = 1.0;
     }
@@ -33,7 +33,7 @@ function gameCycle(){
       document.getElementById("upgrade"+j).style.opacity = 0.6;
     }
   }
-  if(totPower>=addBluePrice) document.getElementById("addBlueButton").style.opacity = 1.0;
+  if(bigBigger(totPower,addBluePrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
   else document.getElementById("addBlueButton").style.opacity = 0.6;
 }
 
