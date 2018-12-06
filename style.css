@@ -4,12 +4,20 @@
   left: 0;
 }
 
-.blueButton {
+.firstButton {
   height: 60px;
   width: 60px;
   border-radius: 50%;
   border: 1px;
-  background-color: blue;
+  background-color: darkCyan;
+}
+
+.blueButton {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px;
+  background-color: darkCyan;
 }
 
 .topLayer {
@@ -50,7 +58,7 @@
 
 .upgrade {
   height: 60px;
-  width: 130px;
+  width: 2000px;
   border-radius: 10%;
   border: 2px;
   background-color: grey;
