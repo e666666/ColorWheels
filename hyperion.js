@@ -37,7 +37,7 @@ function display(number){
     }
   }
   var x = ""+numSplit[0];
-  numSplit[0]=x.slice(0,3);
+  numSplit[0]=x.slice(0,5);
   return ""+numSplit[0]+"e"+numSplit[1];
 }
 
