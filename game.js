@@ -1,5 +1,5 @@
 var blueTick = 0;
-var blueMax = 100;
+var blueMax = 10;
 var totPower = 0;
 var blueMults = [1];
 var upgrade1Price = [10];
