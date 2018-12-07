@@ -1,3 +1,12 @@
+var blueTick: 0,
+var blueMax: 1000,
+var totPower: 0,
+var blueMults: [1],
+var upgrade1Price: [10],
+var addBluePrice: 100,
+var blueIndex: 1,
+var lastTick: new Date.getTime()
+
 function getDefaultSave(){
   return{ 
     blueTick: 0,
