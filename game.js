@@ -16,8 +16,7 @@ function getDefaultSave(){
     upgrade1Price: [10],
     addBluePrice: 100,
     blueIndex: 1,
-    lastTick: new Date.getTime(),
-  };
+    lastTick: new Date.getTime()};
 }
 
 var user = getDefaultSave();
