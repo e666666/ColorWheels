@@ -13,12 +13,7 @@ function update(get, set) {
   }
 
 function testStuff(){
-  //var num = prompt("Please enter the numbers to work with. Comma separated.");
   console.log(user.lastTick);
-  //update("blueCycle", "x");
-  //var nums = num.split(",");
-  //num = bigMult(nums[0],nums[1],1);
-  //alert(num);
 }
 
 function gameCycle(){
