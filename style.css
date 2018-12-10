@@ -7,45 +7,49 @@
 .firstButton {
   height: 60px;
   width: 60px;
-  border-radius: 50%;
+  border-radius: 10%;
   border: 1px;
+  background-color: darkCyan;
+}
+
+.blueButtonSmall {
+  margin: auto;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 2px;
   background-color: darkCyan;
 }
 
 .blueButton {
+  margin: auto;
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  border: 1px;
+  border: 2px;
   background-color: darkCyan;
 }
 
+.upgrade {
+  border-radius: 10%;
+  border: 2px;
+  background-color: grey;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .topLayer {
-  positon: relative;
-  top: 200px;
+  margin: auto;
   left: 0;
-  z-index: 0;
-  top:0;
-  left: 0;
+  vertical-align: top;
+  padding-left: 30px;
+  padding-top: 5px;
 }
 
-.layer1 {
-  position: absolute;
-  z-index: -1;
-  top: 5;
-  left: 0;
-}
-
-.layer2 {
-  z-index: -2;
-  top: 10;
-  left: 0;
-}
-
-.layer3 {
-  z-index: -3;
-  top: 15;
-  left: 0;
+.lowerLayer {
+  margin: auto;
+  padding-left: 15px;
+  vertical-align: top;
 }
 
 .greenButton {
@@ -54,12 +58,4 @@
   border-radius: 50%;
   border: 1px;
   background-color: green;
-}
-
-.upgrade {
-  height: 60px;
-  width: 200px;
-  border-radius: 10%;
-  border: 2px;
-  background-color: grey;
 }
