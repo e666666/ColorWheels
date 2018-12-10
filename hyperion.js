@@ -36,6 +36,11 @@ function display(number){
       numSplit[1]=3;
     }
   }
+  if(numSplit[1]<4) {
+    var x = numSplit[0]*Math.pow(10,numSplit[1]);
+    x = (""+x).slice(0,5);  
+    return x;
+  }
   var x = ""+numSplit[0];
   numSplit[0]=x.slice(0,5);
   return ""+numSplit[0]+"e"+numSplit[1];
