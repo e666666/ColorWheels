@@ -1,5 +1,5 @@
 user = {blueTick:0,
-            blueMax:1000,
+            blueMax:10,
             totPower:0,
             blueMults: [1],
             upgrade1Price: [10],
