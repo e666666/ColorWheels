@@ -9,9 +9,9 @@
     <body style="text-align:center" onLoad="startCycle()">
         <div class="wrapper">
             <div id="menu">
-                <button id="saveButton" onClick="save()">Save your game</button>
-                <button id="loadButton" onClick="alert('This doesn\'t work quite yet.')">Load a save</button>
-		<button id="clearButton" onClick="clearSave()">Delete your save file</button>
+                <button id="saveButton" onClick="save()" class="upgrade">Save your game</button>
+                <button id="loadButton" onClick="alert('This doesn\'t work quite yet.')" class="upgrade">Load a save</button>
+		<button id="clearButton" onClick="clearSave()" class="upgrade">Delete your save file</button>
 	    	<div id="savedInfo" style="display:none">Game saved!</div>
             </div>
             <div id="powerAmount">Total Power: 0</div>
