@@ -4,10 +4,10 @@ user = {blueTick:0,
         blueMults: [1],
         upgrade1Price: [10],
         addBluePrice: 100,
-				addBlueMax: 10,
+	addBlueMax: 10,
         blueIndex: 1,
-				energyPrice: 1e12,
-				energyGainOnNext: 0,
+	energyPrice: 1e12,
+	energyGainOnNext: 0,
         lastTick: new Date().getTime(),
 };
 
@@ -65,7 +65,7 @@ function checkIfMaxBlueButtons(){
 }
 
 function updateEnergyGain(){
-	user.energyGainOnNext=bigMult(totPower,1e12,0);
+	user.energyGainOnNext=bigMult(user.totPower,1e12,0);
 }
 
 function blueClick() {
