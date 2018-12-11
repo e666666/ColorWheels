@@ -1,11 +1,14 @@
 user = {blueTick:0,
-            blueMax:10,
-            totPower:0,
-            blueMults: [1],
-            upgrade1Price: [10],
-            addBluePrice: 100,
-            blueIndex: 1,
-            lastTick: new Date().getTime()
+        blueTickMax:10,
+        totPower:0,
+        blueMults: [1],
+        upgrade1Price: [10],
+        addBluePrice: 100,
+				addBlueMax: 10,
+        blueIndex: 1,
+				energyPrice: 1e12,
+				energyGainOnNext: 0,
+        lastTick: new Date().getTime(),
 };
 
 function update(get, set) {
@@ -17,12 +20,22 @@ function testStuff(){
 }
 
 function gameCycle(){
+	updateTick();
+  colorUpgrades();
+	checkIfMaxBlueButtons();
+	updateEnergyGain();
+}
+
+function updateTick(){	
   if(user.blueTick<1000){
     user.blueTick+=10;
-    update("blueCycle", "Reset Cycle: "+user.blueTick+"/"+user.blueMax);
+    update("blueCycle", "Reset Cycle: "+user.blueTick+"/"+user.blueTickMax);
     changeButtonOpacity(Math.max(200,user.blueTick)/10);
   }
-  for(i=0;i<user.upgrade1Price.length;i++){
+}
+
+function colorUpgrades(){
+	for(i=0;i<user.upgrade1Price.length;i++){
     if(bigBigger(user.totPower,user.upgrade1Price[i])){
       var j = i+1;
       document.getElementById("upgrade"+j).style.opacity = 1.0;
@@ -31,15 +44,33 @@ function gameCycle(){
       var j = i+1;
       document.getElementById("upgrade"+j).style.opacity = 0.6;
     }
-    updateAll();
-  }
+  }	
   if(bigBigger(user.totPower,user.addBluePrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
   else document.getElementById("addBlueButton").style.opacity = 0.6;
+	if(bigBigger(user.totPower,user.energyPrice)) document.getElementById("energyGainButton").style.opacity = 1.0;
+	else document.getElementById("energyGainButton").style.opacity = 0.6;
+  updateAll();
+}
+
+function checkIfMaxBlueButtons(){
+	if(user.blueIndex==user.addBlueMax){
+		document.getElementById("addBlueButton").style.display="none";
+		update("addBlueButton", "You've gone as far as you can go.<br/>Reset the game for "+user.energyGainOnNext+" Energy");
+		document.getElementById("energyGainButton").style.display="block";
+	}
+	else{
+		document.getElementById("addBlueButton").style.display="block";
+		document.getElementById("energyGainButton").style.display="none";
+	}
+}
+
+function updateEnergyGain(){
+	user.energyGainOnNext=bigMult(totPower,1e12,0);
 }
 
 function blueClick() {
   var mult=1;
-  if(user.blueTick>=user.blueMax) {
+  if(user.blueTick>=user.blueTickMax) {
     user.blueMults.forEach(getMult);
     function getMult(value){
       mult=bigMult(mult,value,1);
@@ -50,7 +81,7 @@ function blueClick() {
     user.blueTick=0;
     update("powerAmount", "Total Power: "+display(user.totPower));
     user.blueTick=0;
-    update("blueCycle", "Reset Cycle: 0/"+user.blueMax);
+    update("blueCycle", "Reset Cycle: 0/"+user.blueTickMax);
   }
 }
 
@@ -92,7 +123,7 @@ function checkUpgrade1(num) {
 }
 
 function checkAddBlue() {
-  if(bigBigger(user.totPower,user.addBluePrice)){
+  if(bigBigger(user.totPower,user.addBluePrice)&&(user.blueIndex<user.addBlueMax)){
   //if(totPower>addBluePrice){
     user.totPower=bigAdd(user.totPower,user.addBluePrice,0);
     //totPower-=addBluePrice;
@@ -108,6 +139,7 @@ function checkAddBlue() {
   }
 }
 
+	
 function save(){
 	localStorage.setItem("save",JSON.stringify(user));
         console.log(JSON.stringify(user));
@@ -120,6 +152,7 @@ function load(){
 	if(localStorage.getItem("save") !== null) user = JSON.parse(localStorage.getItem("save"));
 	return user;
 }
+
 function updateAll(){
 	update("powerAmount", "Total Power: "+display(user.totPower));
 	var mult = 1;
@@ -129,7 +162,7 @@ function updateAll(){
     	}
     	var dispMult = display(mult);
 	update("powerMultArea", "Button Mult: x"+dispMult);
-	update("blueCycle", "Reset Cycle: "+user.blueTick+"/"+user.blueMax);
+	update("blueCycle", "Reset Cycle: "+user.blueTick+"/"+user.blueTickMax);
 	for(var i=1;i<user.blueMults.length+1;i++){
 	  var name = "blueCircle" + i;
     update(name, "x"+user.blueMults[i-1]);
@@ -144,10 +177,11 @@ function updateAll(){
 	var dispAddBluePrice = display(user.addBluePrice);
     	update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
 }
+
 function clearSave(){
 	if(confirm("Do you really want to delete your save?\nThis cannot be undone.")){
 		user = {blueTick:0,
-            	blueMax:1000,
+            	blueTickMax:1000,
             	totPower:0,
             	blueMults: [1],
             	upgrade1Price: [10],
