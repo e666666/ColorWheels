@@ -6,72 +6,95 @@
         <title>Color Wheels</title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body onLoad="startCycle()">
+    <body style="text-align:center" onLoad="startCycle()">
         <div class="wrapper">
             <div id="menu">
-                <button id="saveButton" onClick="save()">Save your game</button>
-                <button id="loadButton" onClick="alert('This doesn\'t work quite yet.')">Load a save</button>
-		<button id="clearButton" onClick="clearSave()">Delete your save file</button>
-	    	<div id="savedInfo" style="display:none">Game saved!</div>
+                <button id="saveButton" class="upgrade" onClick="save()">Save your game</button>
+		<button id="clearButton" class="upgrade" onClick="clearSave()">Delete your save file</button>
+	    	<div id="savedInfo" style="display:none; position:absolute">Game saved!</div>
             </div>
+	    <div id="menu2">
+		<button id="exportButton" class="upgrade" onClick="expo()">Export a save file</button>
+		<div id="exportInfo" style="display:none"></div>
+                <button id="importButton" class="upgrade" onClick="impo()">Import a save file</button>
+	    </div>		
             <div id="powerAmount">Total Power: 0</div>
             <div id="powerMultArea" onClick="testStuff()">Button Mult: x1</div>
             <div id="blueCycle">Reset Cycle: 0/1000</div>
+	    <div id="upgradeSet1" class="lowerLayer" style="display:none">
+		<button id="11upgrade" onClick="checkUpgrade(1,1)" style="opacity:0.6" class="upgrade2">
+		    Decrease Reset Cycle Max<br/>1000ms -> 900ms<br/>Cost: 1e4 Power</button>
+		<button id="12upgrade" onClick="checkUpgrade(1,2)" style="opacity:0.6" class="upgrade2">
+		    Increase Click Power<br/>+0 Button Mult -> +1 Button Mult<br/>Cost: 1e6 Power</button>
+	    </div>
+	    <div>
+		<button id="speedy" class="upgrade" onClick="speedUp()" style="display: none">SpeedySpeedy</button>
+	    </div>
             <div id="buttonSet1" style="display: block">
-                <button id="blueCircle1" onClick="blueClick()" class="blueButton">x1</button>
-                <button id="upgrade1" onClick="checkUpgrade1(1)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle1" onClick="blueClick(1)" class="blueButton">x1</button>
+                <button id="upgrade1" onClick="checkButtonUpgrade(1)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 10 Power</button>
+		<div id="maxUpgrade1" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div id="buttonSet2" class="lowerLayer" style="display: none">
-                <button id="blueCircle2" onClick="blueClick()" class="blueButtonSmall">x1</button>
-                <button id="upgrade2" onClick="checkUpgrade1(2)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle2" onClick="blueClick(2)" class="blueButtonSmall">x1</button>
+                <button id="upgrade2" onClick="checkButtonUpgrade(2)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 100 Power</button>
+		<div id="maxUpgrade2" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div id="buttonSet3" class="lowerLayer" style="display:none">
-                <button id="blueCircle3" onClick="blueClick()" class="blueButtonSmall">x1</button>
-                <button id="upgrade3" onClick="checkUpgrade1(3)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle3" onClick="blueClick(3)" class="blueButtonSmall">x1</button>
+                <button id="upgrade3" onClick="checkButtonUpgrade(3)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 1e3 Power</button>
+		<div id="maxUpgrade3" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div id="buttonSet4" class="lowerLayer" style="display:none">
-                <button id="blueCircle4" onClick="blueClick()" class="blueButtonSmall">x1</button>
-                <button id="upgrade4" onClick="checkUpgrade1(4)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle4" onClick="blueClick(4)" class="blueButtonSmall">x1</button>
+                <button id="upgrade4" onClick="checkButtonUpgrade(4)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 1e4 Power</button>
+		<div id="maxUpgrade4" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div id="buttonSet5" class="lowerLayer" style="display:none">
-                <button id="blueCircle5" onClick="blueClick()" class="blueButtonSmall">x1</button>
-                <button id="upgrade5" onClick="checkUpgrade1(5)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle5" onClick="blueClick(5)" class="blueButtonSmall">x1</button>
+                <button id="upgrade5" onClick="checkButtonUpgrade(5)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 1e5 Power</button>
+		<div id="maxUpgrade5" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div id="buttonSet6" class="lowerLayer" style="display:none">
-                <button id="blueCircle6" onClick="blueClick()" class="blueButtonSmall">x1</button>
-                <button id="upgrade6" onClick="checkUpgrade1(6)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle6" onClick="blueClick(6)" class="blueButtonSmall">x1</button>
+                <button id="upgrade6" onClick="checkButtonUpgrade(6)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 1e6 Power</button>
+		<div id="maxUpgrade6" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div id="buttonSet7" class="lowerLayer" style="display:none">
-                <button id="blueCircle7" onClick="blueClick()" class="blueButtonSmall">x1</button>
-                <button id="upgrade7" onClick="checkUpgrade1(7)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle7" onClick="blueClick(7)" class="blueButtonSmall">x1</button>
+                <button id="upgrade7" onClick="checkButtonUpgrade(7)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 1e7 Power</button>
+		<div id="maxUpgrade7" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div id="buttonSet8" class="lowerLayer" style="display:none">
-                <button id="blueCircle8" onClick="blueClick()" class="blueButtonSmall">x1</button>
-                <button id="upgrade8" onClick="checkUpgrade1(8)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle8" onClick="blueClick(8)" class="blueButtonSmall">x1</button>
+                <button id="upgrade8" onClick="checkButtonUpgrade(8)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 1e8 Power</button>
+		<div id="maxUpgrade8" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div id="buttonSet9" class="lowerLayer" style="display:none">
-                <button id="blueCircle9" onClick="blueClick()" class="blueButtonSmall">x1</button>
-                <button id="upgrade9" onClick="checkUpgrade1(9)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle9" onClick="blueClick(9)" class="blueButtonSmall">x1</button>
+                <button id="upgrade9" onClick="checkButtonUpgrade(9)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 1e9 Power</button>
+		<div id="maxUpgrade9" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div id="buttonSet10" class="lowerLayer" style="display:none">
-                <button id="blueCircle10" onClick="blueClick()" class="blueButtonSmall">x1</button>
-                <button id="upgrade10" onClick="checkUpgrade1(10)" style="opacity:0.6" class="upgrade">
+                <button id="blueCircle10" onClick="blueClick(10)" class="blueButtonSmall">x1</button>
+                <button id="upgrade10" onClick="checkButtonUpgrade(10)" style="opacity:0.6" class="upgrade">
                     Upgrade your Blue Button<br/>Cost: 1e10 Power</button>
+		<div id="maxUpgrade10" class="upgrade" style="display:none">Max Multiplier!</div>
             </div>
             <div class="topLayer">
-            <button id="addBlueButton" onClick="checkAddBlue()" style="opacity:0.6" class="upgrade">
-                Add another Blue Button<br/>Cost: 100 Power</button>
+            	<button id="addBlueButton" onClick="checkAddBlue()" style="opacity:0.6" class="upgrade">
+                    Add another Blue Button<br/>Cost: 100 Power</button>
 	    	<button id="energyGainButton" onClick="energyPrestige()" style="opacity:0.6" class="upgrade" display="none">
-				You've gone as far as you can go.<br/>Reset the game for Energy</button>
+		    You've gone as far as you can go.<br/>Reset the game for Energy</button>
             </div>
         </div>
     </body>
