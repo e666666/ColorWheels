@@ -47,7 +47,6 @@ function blueClick() {
     }
     user.totPower=bigAdd(user.totPower,mult,1);
     //totPower+=mult;
-    user.blueTick=0;
     update("powerAmount", "Total Power: "+display(user.totPower));
     user.blueTick=0;
     update("blueCycle", "Reset Cycle: 0/"+user.blueMax);
