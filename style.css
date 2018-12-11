@@ -38,6 +38,15 @@
   vertical-align: middle;
 }
 
+.upgrade2 {
+  border-radius: 10%;
+  border: 2px;
+  width: 250px;
+  background-color: grey;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .topLayer {
   margin: auto;
   left: 0;
@@ -50,6 +59,7 @@
   margin: auto;
   padding-left: 15px;
   vertical-align: top;
+  padding-top: 5px;
 }
 
 .greenButton {
