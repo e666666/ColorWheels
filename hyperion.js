@@ -21,7 +21,7 @@ function shorten(number) {
     numSplit[1]=numSplit[1]/1.0-1;
     first*=10.0;
   };
-  if(numSplit[1]<3) return numSplit[0]*Math.pow(10,numSplit[1]);
+  if(numSplit[1]<4) return numSplit[0]*Math.pow(10,numSplit[1]);
   return ""+numSplit[0]+"e"+numSplit[1];
 }
 
@@ -30,7 +30,7 @@ function display(number){
   number = ""+number;
   var numSplit = number.split("e");
   if(numSplit.length==1){
-    if(number<1000) return (Math.round(number*100))/100;
+    if(number<1000) return Math.round(number);
     else{
       numSplit[0]=Math.round(number)/1000.0;
       numSplit[1]=3;
@@ -38,7 +38,7 @@ function display(number){
   }
   if(numSplit[1]<4) {
     var x = numSplit[0]*Math.pow(10,numSplit[1]);
-    x = (""+x).slice(0,5);  
+    x = (""+x).slice(0,4);  
     return x;
   }
   var x = ""+numSplit[0];
