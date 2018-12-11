@@ -86,14 +86,14 @@ function blueClick() {
 }
 
 function changeButtonOpacity(num) {
-    var buttons = document.getElementsByClassName("blueButton");
-    for(i=0; i<buttons.length; i++) {
-      buttons[i].style.opacity = num/100;
-    }
-    var buttons2 = document.getElementsByClassName("blueButtonSmall");
-    for(i=0; i<buttons2.length; i++) {
-      buttons2[i].style.opacity = num/100;
-    }
+	var buttons = document.getElementsByClassName("blueButton");
+	for(i=0; i<buttons.length; i++) {
+		buttons[i].style.opacity = num/100;
+	}
+	var buttons2 = document.getElementsByClassName("blueButtonSmall");
+	for(i=0; i<buttons2.length; i++) {
+		buttons2[i].style.opacity = num/100;
+	}
 }
 
 function checkUpgrade1(num) {
@@ -186,10 +186,10 @@ function clearSave(){
 						totPower:0,
 						blueMults: [1],
 						upgrade1Price: [10],
-            addBluePrice: 100,
-            blueIndex: 1,
-            lastTick: new Date().getTime()
-		};
+						addBluePrice: 100,
+						blueIndex: 1,
+						lastTick: new Date().getTime()
+					 };
 		updateAll();
 		localStorage.clear();
 	}
