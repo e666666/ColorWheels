@@ -1,33 +1,33 @@
 user = {blueTick:0,
-        blueTickMax:10,
-        totPower:0,
-        blueMults: [1],
-        upgrade1Price: [10],
-        addBluePrice: 100,
+	blueTickMax:10,
+	totPower:0,
+	blueMults: [1],
+	upgrade1Price: [10],
+	addBluePrice: 100,
 	addBlueMax: 10,
-        blueIndex: 1,
+	blueIndex: 1,
 	energyPrice: 1e12,
 	energyGainOnNext: 0,
-        lastTick: new Date().getTime(),
+	lastTick: new Date().getTime(),
 };
 
 function update(get, set) {
   document.getElementById(get).innerHTML=set;
-  }
+}
 
 function testStuff(){
   console.log(user.lastTick);
 }
 
 function gameCycle(){
-	updateTick();
+  updateTick();
   colorUpgrades();
-	checkIfMaxBlueButtons();
-	updateEnergyGain();
+  checkIfMaxBlueButtons();
+  updateEnergyGain();
 }
 
 function updateTick(){	
-  if(user.blueTick<1000){
+  if(user.blueTick<10){
     user.blueTick+=10;
     update("blueCycle", "Reset Cycle: "+user.blueTick+"/"+user.blueTickMax);
     changeButtonOpacity(Math.max(200,user.blueTick)/10);
@@ -35,7 +35,7 @@ function updateTick(){
 }
 
 function colorUpgrades(){
-	for(i=0;i<user.upgrade1Price.length;i++){
+  for(i=0;i<user.upgrade1Price.length;i++){
     if(bigBigger(user.totPower,user.upgrade1Price[i])){
       var j = i+1;
       document.getElementById("upgrade"+j).style.opacity = 1.0;
@@ -47,14 +47,14 @@ function colorUpgrades(){
   }	
   if(bigBigger(user.totPower,user.addBluePrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
   else document.getElementById("addBlueButton").style.opacity = 0.6;
-	if(bigBigger(user.totPower,user.energyPrice)) document.getElementById("energyGainButton").style.opacity = 1.0;
-	else document.getElementById("energyGainButton").style.opacity = 0.6;
+  if(bigBigger(user.totPower,user.energyPrice)) document.getElementById("energyGainButton").style.opacity = 1.0;
+  else document.getElementById("energyGainButton").style.opacity = 0.6;
   updateAll();
 }
 
 function checkIfMaxBlueButtons(){
-	if(user.blueIndex==user.addBlueMax){
-		document.getElementById("addBlueButton").style.display="none";
+  if(user.blueIndex==user.addBlueMax){
+    document.getElementById("addBlueButton").style.display="none";
 		update("addBlueButton", "You've gone as far as you can go.<br/>Reset the game for "+user.energyGainOnNext+" Energy");
 		document.getElementById("energyGainButton").style.display="block";
 	}
@@ -142,7 +142,7 @@ function checkAddBlue() {
 	
 function save(){
 	localStorage.setItem("save",JSON.stringify(user));
-        console.log(JSON.stringify(user));
+	console.log(JSON.stringify(user));
 	document.getElementById("savedInfo").style.display="inline";
 	function foo() {document.getElementById("savedInfo").style.display="none"}
 	setTimeout(foo, 2000);
@@ -156,11 +156,11 @@ function load(){
 function updateAll(){
 	update("powerAmount", "Total Power: "+display(user.totPower));
 	var mult = 1;
-    	user.blueMults.forEach(getMult);
-    	function getMult(value){
-      		mult=bigMult(mult,value,1);
-    	}
-    	var dispMult = display(mult);
+	user.blueMults.forEach(getMult);
+	function getMult(value){
+		mult=bigMult(mult,value,1);
+	}
+	var dispMult = display(mult);
 	update("powerMultArea", "Button Mult: x"+dispMult);
 	update("blueCycle", "Reset Cycle: "+user.blueTick+"/"+user.blueTickMax);
 	for(var i=1;i<user.blueMults.length+1;i++){
@@ -172,22 +172,23 @@ function updateAll(){
     document.getElementById("buttonSet"+i).style.display="block";	
 	}
 	for(var i=user.blueMults.length+1;i<10;i++){
-    		document.getElementById("buttonSet"+i).style.display="none";
+		document.getElementById("buttonSet"+i).style.display="none";
 	}
 	var dispAddBluePrice = display(user.addBluePrice);
-    	update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
+	update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
+	checkIfMaxBlueButtons();
 }
 
 function clearSave(){
 	if(confirm("Do you really want to delete your save?\nThis cannot be undone.")){
 		user = {blueTick:0,
-            	blueTickMax:1000,
-            	totPower:0,
-            	blueMults: [1],
-            	upgrade1Price: [10],
-            	addBluePrice: 100,
-            	blueIndex: 1,
-            	lastTick: new Date().getTime()
+						blueTickMax:1000,
+						totPower:0,
+						blueMults: [1],
+						upgrade1Price: [10],
+            addBluePrice: 100,
+            blueIndex: 1,
+            lastTick: new Date().getTime()
 		};
 		updateAll();
 		localStorage.clear();
