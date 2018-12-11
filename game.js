@@ -92,6 +92,7 @@ function checkUpgrade1(num) {
 }
 
 function checkAddBlue() {
+	if(user.blueIndex<10){
   if(bigBigger(user.totPower,user.addBluePrice)){
   //if(totPower>addBluePrice){
     user.totPower=bigAdd(user.totPower,user.addBluePrice,0);
@@ -106,6 +107,7 @@ function checkAddBlue() {
     var dispAddBluePrice = display(user.addBluePrice);
     update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
   }
+	}
 }
 
 function save(){
