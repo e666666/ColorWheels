@@ -1,43 +1,37 @@
-user = {blueTick:0,
-	originalTickMax:1000,
-	blueTickMax:1000,
-	totPower:0,
-	//blueMults: [1],
-	//maxMult: 10,
-	//buttonUpgradePrice: [10],
-	//addBluePrice: 100,
-	//addBlueMax: 10,
-	//blueIndex: 1,
-        upgrades: {addButton:{currentBonus:1,price:100,priceIncrease:10,maxButtons:10,id:"Add Blue Button"},
-                   buttonUpgrades:{button1:{mult:1,price:10,priceIncrease:10,maxMult:10,id:"blueCircle1Upgrade"},
-                                    button2:{mult:1,price:100,priceIncrease:10,maxMult:10,id:"blueCircle2Upgrade"},
-                                    button3:{mult:1,price:1e3,priceIncrease:10,maxMult:10,id:"blueCircle3Upgrade"},
-                                    button4:{mult:1,price:1e4,priceIncrease:10,maxMult:10,id:"blueCircle4Upgrade"},
-                                    button5:{mult:1,price:1e5,priceIncrease:10,maxMult:10,id:"blueCircle5Upgrade"},
-                                    button6:{mult:1,price:1e6,priceIncrease:10,maxMult:10,id:"blueCircle6Upgrade"},
-                                    button7:{mult:1,price:1e7,priceIncrease:10,maxMult:10,id:"blueCircle7Upgrade"},
-                                    button8:{mult:1,price:1e8,priceIncrease:10,maxMult:10,id:"blueCircle8Upgrade"},
-                                    button9:{mult:1,price:1e9,priceIncrease:10,maxMult:10,id:"blueCircle9Upgrade"},
-                                    button10:{mult:1,price:1e10,priceIncrease:10,maxMult:10,id:"blueCircle10Upgrade"}
+var user = {blueTick:"0",
+	originalTickMax:"1000",
+	blueTickMax:"1000",
+	totPower:"0",
+        upgrades: {addButton:{currentBonus:"1",price:"100",priceIncrease:"10",maxButtons:"10",id:"Add Blue Button"},
+                   buttonUpgrades:{button1:{mult:"1",price:"10",priceIncrease:"10",maxMult:"10",id:"blueCircle1Upgrade"},
+                                    button2:{mult:"1",price:"100",priceIncrease:"10",maxMult:"10",id:"blueCircle2Upgrade"},
+                                    button3:{mult:"1",price:1+"e"+3,priceIncrease:"10",maxMult:"10",id:"blueCircle3Upgrade"},
+                                    button4:{mult:"1",price:1+"e"+4,priceIncrease:"10",maxMult:"10",id:"blueCircle4Upgrade"},
+                                    button5:{mult:"1",price:1+"e"+5,priceIncrease:"10",maxMult:"10",id:"blueCircle5Upgrade"},
+                                    button6:{mult:"1",price:1+"e"+6,priceIncrease:"10",maxMult:"10",id:"blueCircle6Upgrade"},
+                                    button7:{mult:"1",price:1+"e"+7,priceIncrease:"10",maxMult:"10",id:"blueCircle7Upgrade"},
+                                    button8:{mult:"1",price:1+"e"+8,priceIncrease:"10",maxMult:"10",id:"blueCircle8Upgrade"},
+                                    button9:{mult:"1",price:1+"e"+9,priceIncrease:"10",maxMult:"10",id:"blueCircle9Upgrade"},
+                                    button10:{mult:"1",price:1+"e"+10,priceIncrease:"10",maxMult:"10",id:"blueCircle10Upgrade"}
                                    },
-                   cycleUpgrade:{currentBonus:1000,increase:0.9,price:1e4,priceIncrease:10,id:"Cycle Upgrade"},
-                   clickPowerUpgrade:{currentBonus:0,increase:1,price:1e5,priceIncrease:10,poweredButton:0,id:"Click Power Upgrade"},
-                   autoButtonCountUpgrade:{currentBonus:1,increase:1,price:1e9,priceIncrease:100,id:"AutoButton Count Upgrade"},
-                   autoMultUpgrade:{currentBonus:0.5,increase:0.1,price:1e8,priceIncrease:100,id:"AutoMult Upgrade"},
-                   autoCycleUpgrade:{currentBonus:5,increase:-1,price:1e10,priceIncrease:1000,id:"AutoCycle Upgrade"}
+                   cycleUpgrade:{currentBonus:"1000",increase:"0.9",price:1+"e"+4,priceIncrease:"10",id:"Cycle Upgrade"},
+                   clickPowerUpgrade:{currentBonus:"0",increase:"1",price:1+"e"+5,priceIncrease:"10",poweredButton:0,id:"Click Power Upgrade"},
+                   autoButtonCountUpgrade:{currentBonus:"1",increase:"1",price:1+"e"+9,priceIncrease:"100",id:"AutoButton Count Upgrade"},
+                   autoMultUpgrade:{currentBonus:"0.5",increase:"0.1",price:1+"e"+8,priceIncrease:"100",id:"AutoMult Upgrade"},
+                   autoCycleUpgrade:{currentBonus:"5",increase:"-1",price:1+"e"+10,priceIncrease:"1000",id:"AutoCycle Upgrade"}
                   },
-	poweredButton: 0,
-	upgradeDisplayed: false,
-	autoclickerDisplayed: false,
+	poweredButton: "0",
+	upgradeDisplayed: "false",
+	autoclickerDisplayed: "false",
 	energyPrice: 1+"e"+12,
-	energyGainOnNext: 0,
+	energyGainOnNext: "0",
 	lastTick: new Date().getTime(),
         autoclicker: {lastTick: new Date().getTime(),
-                       numButtons: 1,
-                       buttonMult: 0.5,
-                       cycleCount: 5,
-                       timeToNextClick: 5000,
-                       active: false,
+                       numButtons: "1",
+                       buttonMult: "0.5",
+                       cycleCount: "5",
+                       timeToNextClick: "5000",
+                       active: "false",
         },
 };
 
@@ -78,14 +72,16 @@ function updateTick(){
 
 function colorUpgrades(){
   for(var button in user.upgrades){
-    if(!(button.hasOwnProperty("price")){
+    if(button=="buttonUpgrades"){
       for(var bbutton in button){
         if(bigBigger(user.totPower,bbutton.price)) document.getElementById(bbutton.id).style.opacity=1.0;
         else document.getElementById(bbutton.id).style.opacity=0.6;
       }
     }
-    if(bigBigger(user.totPower,button.price)) document.getElementById(button.id).style.opacity=1.0;
-    else document.getElementById(button.id).style.opacity=0.6;
+    else{
+      if(bigBigger(user.totPower,button.price)) document.getElementById(button.id).style.opacity=1.0;
+      else document.getElementById(button.id).style.opacity=0.6;
+    }
   }
   updateAll();
 }
@@ -277,7 +273,8 @@ function updateAll(){
   else hide("upgradeSet1");
   if(user.autoclickerDisplayed) document.getElementById("autoclickerPurchase").style.display="block";
   else hide("autoclickerPurchase");
-  for(var i=user.upgrades.addButton.currentBonus+1;i<user.upgrades.addButton.maxButtons+1;i++){
+  var seen=user.upgrades.addButton.currentBonus;
+  for(var i=seen+1;i<user.upgrades.addButton.maxButtons+1;i++){
     document.getElementById("buttonSet"+i).style.display="none";
   }
   checkIfMaxBlueButtons();
