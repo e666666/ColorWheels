@@ -35,6 +35,7 @@ function gameCycle(){
   }
   if(bigBigger(user.totPower,user.addBluePrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
   else document.getElementById("addBlueButton").style.opacity = 0.6;
+  blueClick();
 }
 
 function blueClick() {
