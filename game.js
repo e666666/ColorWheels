@@ -1,170 +1,139 @@
-user = {blueTick:0,
-            blueMax:1000,
-            totPower:0,
-            blueMults: [1],
-            upgrade1Price: [10],
-            addBluePrice: 100,
-            blueIndex: 1,
-            lastTick: new Date().getTime()
+function getDefaultUser() = {
+	totPower:0,
+	blue: {
+		tick:0,
+		tickMax:1000,
+		mults: [1],
+		buttonPrice: [10],
+		upgrades:     ["CR" ,"CU" ,"LB" ],
+		upgradePrices:["1e6","1e7","1e10"],
+		upgradeIncrease:[10 , 100 , 10  ],
+		addButtonPrice: 100,
+		index: 1,
+	},
+	green: {
+		tick:0,
+		tickMax:1000,
+		mults: [1],
+		buttonPrice: [10],
+		addButtonPrice: 100,
+		index: 1,
+	},
+	lastTick: new Date().getTime()
 };
 
-function update(get, set) {
-  document.getElementById(get).innerHTML=set;
-  }
+let user = getDefaultUser();
 
-function testStuff(){
-  console.log(user.lastTick);
+function update(get, set) {
+	document.getElementById(get).innerHTML=set;
 }
 
 function gameCycle(){
-  if(user.blueTick<1000){
-    user.blueTick+=10;
-    update("blueCycle", "Reset Cycle: "+user.blueTick+"/"+user.blueMax);
-    changeButtonOpacity(Math.max(200,user.blueTick)/10);
-  }
-  for(i=0;i<user.upgrade1Price.length;i++){
-    if(bigBigger(user.totPower,user.upgrade1Price[i])){
-      var j = i+1;
-      document.getElementById("upgrade"+j).style.opacity = 1.0;
-    }
-    else{
-      var j = i+1;
-      document.getElementById("upgrade"+j).style.opacity = 0.6;
-    }
-    updateAll();
-  }
-  if(bigBigger(user.totPower,user.addBluePrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
-  else document.getElementById("addBlueButton").style.opacity = 0.6;
-  blueClick();
+	if(user.blue.tick<1000){
+		user.blue.tick+=10;
+		update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
+		changeButtonOpacity(Math.max(200,user.blue.tick)/10);
+	}
+	blueClick();
+	updateAll();
 }
 
 function blueClick() {
-  var mult=1;
-  if(user.blueTick>=user.blueMax) {
-    user.blueMults.forEach(getMult);
-    function getMult(value){
-      mult=bigMult(mult,value,1);
-      //mult*=value;
-    }
-    user.totPower=bigAdd(user.totPower,mult,1);
-    //totPower+=mult;
-    update("powerAmount", "Total Power: "+display(user.totPower));
-    user.blueTick=0;
-    update("blueCycle", "Reset Cycle: 0/"+user.blueMax);
-  }
-}
-
-function changeButtonOpacity(num) {
-    var buttons = document.getElementsByClassName("blueButton");
-    for(i=0; i<buttons.length; i++) {
-      buttons[i].style.opacity = num/100;
-    }
-    var buttons2 = document.getElementsByClassName("blueButtonSmall");
-    for(i=0; i<buttons2.length; i++) {
-      buttons2[i].style.opacity = num/100;
-    }
+	var mult=1;
+	if(user.blue.tick>=user.blue.tickMax) {
+		user.blue.mults.forEach(getMult);
+		function getMult(value){
+			mult=bigMult(mult,value,1);
+		}
+		user.totPower=bigAdd(user.totPower,mult,1);
+		user.blue.tick=0;
+	}
 }
 
 function checkButtonUpgrade(num) {
-  var price=user.upgrade1Price[num-1];
-  if(bigBigger(user.totPower,price)){
-  //if(totPower>price){
-    user.totPower=bigAdd(user.totPower,price,0);
-    //totPower-=price;
-    update("powerAmount", "Total Power: "+display(user.totPower));
-    user.blueMults[num-1]=user.blueMults[num-1]+1;
-    var name = "blueCircle" + num;
-    update(name, "x"+user.blueMults[num-1]);
-    price=bigMult(price,2.5,1);
-    //price=Math.floor(price*2.5);
-    user.upgrade1Price[num-1]=price;
-    price=display(price);
-    update("upgrade"+num, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
-    var mult = 1;
-    user.blueMults.forEach(getMult);
-    function getMult(value){
-      mult=bigMult(mult,value,1);
-      //mult*=value;
-    }
-    var dispMult = display(mult);
-    update("powerMultArea", "Button Mult: x"+dispMult);
-  }
+	var price=user.blue.buttonPrice[num-1];
+	if(bigBigger(user.totPower,price)){
+		user.totPower=bigAdd(user.totPower,price,0);
+		user.blue.mults[num-1]=user.blue.mults[num-1]+1;
+		price=bigMult(price,2.5,1);
+		user.blue.buttonPrice[num-1]=price;
+	}
 }
 
 function checkAddBlue() {
-	if(user.blueIndex<10){
-  if(bigBigger(user.totPower,user.addBluePrice)){
-  //if(totPower>addBluePrice){
-    user.totPower=bigAdd(user.totPower,user.addBluePrice,0);
-    //totPower-=addBluePrice;
-    user.blueIndex++;
-    update("powerAmount", "Total Power: "+display(user.totPower));
-    document.getElementById("buttonSet"+user.blueIndex).style.display="block";
-    user.blueMults.push(1);
-    user.upgrade1Price.push(display("1e"+user.blueIndex));
-    //upgrade1Price.push(Math.pow(10,blueIndex));
-    user.addBluePrice=bigMult(user.addBluePrice,10,1);
-    var dispAddBluePrice = display(user.addBluePrice);
-    update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
-  }
+	if(user.blue.index<10){
+		if(bigBigger(user.totPower,user.blue.addButtonPrice)){
+			user.totPower=bigAdd(user.totPower,user.blue.addButtonPrice,0);
+			user.blue.index++;
+			document.getElementById("buttonSet"+user.blue.index).style.display="block";
+			user.blue.mults.push(1);
+			user.blue.buttonPrice.push(display("1e"+user.blue.index));
+			user.blue.addButtonPrice=bigMult(user.blue.addButtonPrice,10,1);
+		}
 	}
 }
 
 function save(){
-	localStorage.setItem("save",JSON.stringify(user));
-        console.log(JSON.stringify(user));
+	localStorage.setItem("colorWheelsSave",JSON.stringify(user));
+	console.log(JSON.stringify(user));
 	document.getElementById("savedInfo").style.display="inline";
 	function foo() {document.getElementById("savedInfo").style.display="none"}
 	setTimeout(foo, 2000);
 }
 
 function load(){
-	if(localStorage.getItem("save") !== null) user = JSON.parse(localStorage.getItem("save"));
+	if(localStorage.getItem("colorWheelsSave") !== null) user = JSON.parse(localStorage.getItem("colorWheelsSave"));
 	return user;
 }
+
 function updateAll(){
 	update("powerAmount", "Total Power: "+display(user.totPower));
 	var mult = 1;
-    	user.blueMults.forEach(getMult);
-    	function getMult(value){
-      		mult=bigMult(mult,value,1);
-    	}
-    	var dispMult = display(mult);
+	user.blue.mults.forEach(getMult);
+	function getMult(value){
+		mult=bigMult(mult,value,1);
+	}
+	var dispMult = display(mult);
 	update("powerMultArea", "Button Mult: x"+dispMult);
-	update("blueCycle", "Reset Cycle: "+user.blueTick+"/"+user.blueMax);
-	for(var i=1;i<user.blueMults.length+1;i++){
-	  var name = "blueCircle" + i;
-    update(name, "x"+user.blueMults[i-1]);
-		var price=user.upgrade1Price[i-1];
-    price=display(price);
-    update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
-    document.getElementById("buttonSet"+i).style.display="block";	
+	update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
+	for(var i=1;i<user.blue.mults.length+1;i++){
+		var name = "blueCircle" + i;
+		update(name, "x"+user.blue.mults[i-1]);
+		var price=user.blue.buttonPrice[i-1];
+		price=display(price);
+		update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
+		document.getElementById("buttonSet"+i).style.display="block";	
 	}
-	for(var i=user.blueMults.length+1;i<10;i++){
-    		document.getElementById("buttonSet"+i).style.display="none";
+	for(var i=user.blue.mults.length+1;i<10;i++){
+		document.getElementById("buttonSet"+i).style.display="none";
 	}
-	var dispAddBluePrice = display(user.addBluePrice);
-    	update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
+	var dispAddBluePrice = display(user.blue.addButtonPrice);
+	update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
+	for(i=0;i<user.blue.buttonPrice.length;i++){
+		if(bigBigger(user.totPower,user.blue.buttonPrice[i])){
+			var j = i+1;
+			document.getElementById("upgrade"+j).style.opacity = 1.0;
+		}
+		else{
+			var j = i+1;
+			document.getElementById("upgrade"+j).style.opacity = 0.6;
+		}
+	}
+	if(bigBigger(user.totPower,user.blue.addButtonPrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
+	else document.getElementById("addBlueButton").style.opacity = 0.6;
 }
+
 function clearSave(){
 	if(confirm("Do you really want to delete your save?\nThis cannot be undone.")){
-		user = {blueTick:0,
-            	blueMax:1000,
-            	totPower:0,
-            	blueMults: [1],
-            	upgrade1Price: [10],
-            	addBluePrice: 100,
-            	blueIndex: 1,
-            	lastTick: new Date().getTime()
-		};
+		user = getDefaultUser();
 		updateAll();
-		localStorage.clear();
+		localStorage.removeItem("colorWheelsSave");
 	}
 }
 
 function startCycle(){
-  load();
-  updateAll();
-  setInterval(gameCycle, 10);
-  setInterval(save, 30000);
+	load();
+	updateAll();
+	setInterval(gameCycle, 10);
+	setInterval(save, 30000);
 }
