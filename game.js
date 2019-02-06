@@ -65,7 +65,7 @@ function changeButtonOpacity(num) {
     }
 }
 
-function checkUpgrade1(num) {
+function checkButtonUpgrade(num) {
   var price=user.upgrade1Price[num-1];
   if(bigBigger(user.totPower,price)){
   //if(totPower>price){
