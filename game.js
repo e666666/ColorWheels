@@ -54,9 +54,12 @@ function blueClick(num) {
 		function getMult(value){
 			mult=bigMult(mult,value,1);
 		}
-		for(let i=0;i<num;i++){
-			user.totPower=bigAdd(user.totPower,mult,1);
+		let tot = 0;
+		while(num>1) {
+			tot=bigAdd(tot,mult,1);
+			num-=1;
 		}
+		user.totPower=bigAdd(user.totPower,tot,1);
 		user.blue.tick=0;
 	}
 }
