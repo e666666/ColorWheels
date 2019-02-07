@@ -1,4 +1,4 @@
-function getDefaultUser() = {
+function getDefaultUser() {
 	totPower:0,
 	blue: {
 		tick:0,
@@ -19,8 +19,8 @@ function getDefaultUser() = {
 		addButtonPrice: 100,
 		index: 1,
 	},
-	lastTick: new Date().getTime()
-};
+	lastTick: new Date().getTime(),
+}
 
 let user = getDefaultUser();
 
