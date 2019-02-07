@@ -40,7 +40,6 @@ function gameCycle(){
 		update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
 	}
 	else {
-		console.log(user.blue.tick/1000);
 		blueClick(Math.round(user.blue.tick/1000));
 	}
 	user.lastTick = now;
@@ -56,6 +55,7 @@ function blueClick(num) {
 		}
 		let tot = 0;
 		while(num>1) {
+			console.log(tot, mult, num);
 			tot=bigAdd(tot,mult,1);
 			num-=1;
 		}
