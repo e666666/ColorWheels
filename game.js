@@ -1,25 +1,27 @@
 function getDefaultUser() {
-	totPower:0,
-	blue: {
-		tick:0,
-		tickMax:1000,
-		mults: [1],
-		buttonPrice: [10],
-		upgrades:     ["CR" ,"CU" ,"LB" ],
-		upgradePrices:["1e6","1e7","1e10"],
-		upgradeIncrease:[10 , 100 , 10  ],
-		addButtonPrice: 100,
-		index: 1,
-	},
-	green: {
-		tick:0,
-		tickMax:1000,
-		mults: [1],
-		buttonPrice: [10],
-		addButtonPrice: 100,
-		index: 1,
-	},
-	lastTick: new Date().getTime(),
+	return {
+		totPower:0,
+		blue: {
+			tick:0,
+			tickMax:1000,
+			mults: [1],
+			buttonPrice: [10],
+			upgrades:     ["CR" ,"CU" ,"LB" ],
+			upgradePrices:["1e6","1e7","1e10"],
+			upgradeIncrease:[10 , 100 , 10  ],
+			addButtonPrice: 100,
+			index: 1,
+		},
+		green: {
+			tick:0,
+			tickMax:1000,
+			mults: [1],
+			buttonPrice: [10],
+			addButtonPrice: 100,
+			index: 1,
+		},
+		lastTick: new Date().getTime(),
+	};
 }
 
 let user = getDefaultUser();
