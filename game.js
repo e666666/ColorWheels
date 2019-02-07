@@ -60,6 +60,7 @@ function checkButtonUpgrade(num) {
 		price=bigMult(price,2.5,1);
 		user.blue.buttonPrice[num-1]=price;
 	}
+	updateAll();
 }
 
 function checkAddBlue() {
@@ -73,6 +74,7 @@ function checkAddBlue() {
 			user.blue.addButtonPrice=bigMult(user.blue.addButtonPrice,10,1);
 		}
 	}
+	updateAll();
 }
 
 function save(){
