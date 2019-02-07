@@ -132,7 +132,7 @@ function updateAll(){
 		update(name, "x"+user.blue.mults[i-1]);
 		var price=user.blue.buttonPrice[i-1];
 		price=display(price);
-		if (bigBigger(user.blue.limits[i-1],user.blue.mults[i-1])) {
+		if (bigBigger(user.blue.limits[i-1]-1,user.blue.mults[i-1])) {
 			update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
 		} else {
 			update("upgrade"+i, "Max Multiplier!");
