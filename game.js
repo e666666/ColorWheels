@@ -7,12 +7,14 @@ function getDefaultUser() {
 			mults: [1],
 			limits: [10],
 			buttonPrice: [10],
-			upgrades:     ["CR" ,"CU" ,"LB" ],
-			upgradeCount: [0    ,0    ,0    ],
-			upgradePrices:["1e6","1e7","1e10"],
-			upgradeIncrease:[10 , 100 , 10  ],
+			upgrades:     ["CR" ,"CU" ,"LB" ,"BB" ],
+			upgradeCount: [0    ,0    ,0    ,0    ],
+			upgradePrices:["1e6","1e7","1e10","1e50"],
+			upgradeIncrease:[10 , 100 , 10   , 1],
 			addButtonPrice: 100,
 			index: 1,
+			indexLimit: 10,
+			energy: 0,
 		},
 		green: {
 			tick:0,
@@ -104,6 +106,25 @@ function checkAddBlue() {
 	updateAll();
 }
 
+function getBluePrestige() {
+	if(bigBigger(1e10,user.totPower)){
+		return bigAdd(user.totPower.split("e")[1],9,0);
+	}
+}
+
+function blueReset() {
+	if(bigBigger(getBluePrestige(),1)){
+		let energy = user.blue.energy;
+		let count = user.blue.upgradeCount;
+		let prices = user.blue.upgradePrices;
+		user.blue = getDefaultUser().blue;
+		user.blue.energy = energy;
+		user.blue.upgradeCount = count;
+		user.blue.upgradePrices = prices;
+		updateAll();
+	}
+}
+
 function save(){
 	localStorage.setItem("colorWheelsSave",JSON.stringify(user));
 	document.getElementById("savedInfo").style.display="inline";
@@ -118,6 +139,10 @@ function load(){
 
 function updateAll(){
 	update("powerAmount", "Total Power: "+display(user.totPower));
+	if(bigBigger(user.blue.energy,1)){
+		document.getElementById("blueEnergyArea").style.display = "";
+		document.getElementById("blueEnergyAmount").innerHTML = display(user.blue.energy);
+	}
 	var mult = 1;
 	user.blue.mults.forEach(getMult);
 	function getMult(value){
@@ -155,6 +180,14 @@ function updateAll(){
 	}
 	if(bigBigger(user.totPower,user.blue.addButtonPrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
 	else document.getElementById("addBlueButton").style.opacity = 0.6;
+	if(user.blue.index>user.blue.indexLimit) {
+		document.getElementById("addBlueButton").style.display = "none";
+		document.getElementById("bluePrestigeButton").style.display = "";
+	} else {
+		document.getElementById("addBlueButton").style.display = "";
+		document.getElementById("bluePrestigeButton").style.display = "none";
+	}
+	document.getElementById("bluePrestigeAmount").innerHTML = getBluePrestige();
 }
 
 function clearSave(){
