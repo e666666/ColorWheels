@@ -66,7 +66,7 @@ function blueClick(num) {
 
 function checkButtonUpgrade(num) {
 	var price=user.blue.buttonPrice[num-1];
-	if(bigBigger(user.totPower,price)&&bigBigger(user.blue.limits[num-1],user.blue.mults[num-1])){
+	if(bigBigger(user.totPower,price)&&bigBigger(user.blue.limits[num-1]-1,user.blue.mults[num-1])){
 		user.totPower=bigAdd(user.totPower,price,0);
 		user.blue.mults[num-1]=user.blue.mults[num-1]+1;
 		price=bigMult(price,2.5,1);
