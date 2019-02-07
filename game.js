@@ -100,7 +100,6 @@ function checkAddBlue() {
 
 function save(){
 	localStorage.setItem("colorWheelsSave",JSON.stringify(user));
-	console.log(JSON.stringify(user));
 	document.getElementById("savedInfo").style.display="inline";
 	function foo() {document.getElementById("savedInfo").style.display="none"}
 	setTimeout(foo, 2000);
