@@ -54,7 +54,7 @@ function blueClick(num) {
 			mult=bigMult(mult,value,1);
 		}
 		let tot = 0;
-		while(num>1) {
+		while(num>-1) {
 			console.log(tot, mult, num);
 			tot=bigAdd(tot,mult,1);
 			num-=1;
