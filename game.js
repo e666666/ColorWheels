@@ -33,11 +33,15 @@ function update(get, set) {
 }
 
 function gameCycle(){
+	let diff = new Date().getTime() - user.lastTick;
+	user.blue.tick+=Math.round(diff/10)*10;
 	if(user.blue.tick<1000){
-		user.blue.tick+=10;
 		update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
 	}
-	blueClick();
+	else {
+		let num = user.blue.tick/1000;
+		for(let i = 0; i < num; i++) blueClick();
+	}
 	updateAll();
 }
 
