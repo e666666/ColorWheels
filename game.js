@@ -39,20 +39,21 @@ function gameCycle(){
 		update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
 	}
 	else {
-		let num = user.blue.tick/1000;
-		for(let i = 0; i < num; i++) blueClick();
+		blueClick(user.blue.tick/1000);
 	}
 	updateAll();
 }
 
-function blueClick() {
+function blueClick(num) {
 	var mult=1;
 	if(user.blue.tick>=user.blue.tickMax) {
 		user.blue.mults.forEach(getMult);
 		function getMult(value){
 			mult=bigMult(mult,value,1);
 		}
-		user.totPower=bigAdd(user.totPower,mult,1);
+		for(let i=0;i<num;i++){
+			user.totPower=bigAdd(user.totPower,mult,1);
+		}
 		user.blue.tick=0;
 	}
 }
