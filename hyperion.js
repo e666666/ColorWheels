@@ -38,7 +38,7 @@ function display(number){
   }
   if(numSplit[1]<4) {
     var x = numSplit[0]*Math.pow(10,numSplit[1]);
-    x = (""+x).slice(0,5);  
+    x = (""+x).slice(0,4);  
     return x;
   }
   var x = ""+numSplit[0];
