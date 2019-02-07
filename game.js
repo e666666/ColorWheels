@@ -145,7 +145,7 @@ function updateAll(){
 	var dispAddBluePrice = display(user.blue.addButtonPrice);
 	update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
 	for(i=0;i<user.blue.buttonPrice.length;i++){
-		if(bigBigger(user.totPower,user.blue.buttonPrice[i])){
+		if(bigBigger(user.totPower,user.blue.buttonPrice[i])||user.blue.mults[i]==user.blue.limits[1]){
 			var j = i+1;
 			document.getElementById("upgrade"+j).style.opacity = 1.0;
 		}
