@@ -41,7 +41,7 @@ function gameCycle(){
 	}
 	else {
 		console.log(user.blue.tick/1000);
-		blueClick(user.blue.tick/1000);
+		blueClick(Math.round(user.blue.tick/1000));
 	}
 	user.lastTick = now;
 	updateAll();
