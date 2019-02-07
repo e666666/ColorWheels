@@ -34,7 +34,6 @@ function gameCycle(){
 	if(user.blue.tick<1000){
 		user.blue.tick+=10;
 		update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
-		changeButtonOpacity(Math.max(200,user.blue.tick)/10);
 	}
 	blueClick();
 	updateAll();
