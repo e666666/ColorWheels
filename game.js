@@ -5,8 +5,10 @@ function getDefaultUser() {
 			tick:0,
 			tickMax:1000,
 			mults: [1],
+			limits: [10],
 			buttonPrice: [10],
 			upgrades:     ["CR" ,"CU" ,"LB" ],
+			upgradeCount: [0    ,0    ,0    ],
 			upgradePrices:["1e6","1e7","1e10"],
 			upgradeIncrease:[10 , 100 , 10  ],
 			addButtonPrice: 100,
@@ -53,13 +55,28 @@ function blueClick() {
 
 function checkButtonUpgrade(num) {
 	var price=user.blue.buttonPrice[num-1];
-	if(bigBigger(user.totPower,price)){
+	if(bigBigger(user.totPower,price)&&bigBigger(user.blue.limits[num-1],user.blue.mults[num-1])){
 		user.totPower=bigAdd(user.totPower,price,0);
 		user.blue.mults[num-1]=user.blue.mults[num-1]+1;
 		price=bigMult(price,2.5,1);
 		user.blue.buttonPrice[num-1]=price;
 	}
 	updateAll();
+}
+
+function checkUpgrade(color, dex) {
+	let index = user[color].upgrades.indexOf(dex);
+	if(canBuyUpgrade(color, index)){
+		user.totPower = bigAdd(user.totPower, user[color].upgradePrices[index], 0);
+		user[color].upgradeCount[index]++;
+		user[color].upgradePrices[index] = bigMult(user[color].upgradePrices[index], user[color].upgradeIncrease[index], 1);
+	}
+	updateAll();
+}
+
+function canBuyUpgrade(color, index) {
+	if(bigBigger(user.totPower, user[color].upgradePrice[index])) return true;
+	else return false;
 }
 
 function checkAddBlue() {
@@ -69,6 +86,7 @@ function checkAddBlue() {
 			user.blue.index++;
 			document.getElementById("buttonSet"+user.blue.index).style.display="block";
 			user.blue.mults.push(1);
+			user.blue.limits.push(10);
 			user.blue.buttonPrice.push(display("1e"+user.blue.index));
 			user.blue.addButtonPrice=bigMult(user.blue.addButtonPrice,10,1);
 		}
@@ -104,7 +122,11 @@ function updateAll(){
 		update(name, "x"+user.blue.mults[i-1]);
 		var price=user.blue.buttonPrice[i-1];
 		price=display(price);
-		update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
+		if (bigBigger(user.blue.limits[i],user.blue.mults[i])) {
+			update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
+		} else {
+			update("upgrade"+i, "Max Multiplier!");
+		}
 		document.getElementById("buttonSet"+i).style.display="block";	
 	}
 	for(var i=user.blue.mults.length+1;i<10;i++){
