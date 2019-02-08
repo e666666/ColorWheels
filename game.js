@@ -115,7 +115,7 @@ function getBluePrestige() {
 
 function blueReset() {
 	if(bigBigger(getBluePrestige(),1)){
-		let energy = user.blue.energy;
+		let energy = user.blue.energy + getBluePrestige();
 		let count = user.blue.upgradeCount;
 		let prices = user.blue.upgradePrices;
 		user.blue = getDefaultUser().blue;
