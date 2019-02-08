@@ -119,6 +119,7 @@ function blueReset() {
 		let count = user.blue.upgradeCount;
 		let prices = user.blue.upgradePrices;
 		user.blue = getDefaultUser().blue;
+		user.totPower = 0;
 		user.blue.energy = energy;
 		user.blue.upgradeCount = count;
 		user.blue.upgradePrices = prices;
