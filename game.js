@@ -111,6 +111,7 @@ function getBluePrestige() {
 		let pow = ""+user.totPower;
 		return bigAdd(pow.split("e")[1],9,0);
 	}
+	else return 0;
 }
 
 function blueReset() {
