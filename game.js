@@ -108,7 +108,8 @@ function checkAddBlue() {
 
 function getBluePrestige() {
 	if(bigBigger(1e10,user.totPower)){
-		return bigAdd(user.totPower.split("e")[1],9,0);
+		let pow = ""+user.totPower;
+		return bigAdd(pow.split("e")[1],9,0);
 	}
 }
 
