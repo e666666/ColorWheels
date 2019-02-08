@@ -144,6 +144,7 @@ function updateAll(){
 		document.getElementById("blueEnergyArea").style.display = "";
 		document.getElementById("blueEnergyAmount").innerHTML = display(user.blue.energy);
 	}
+	else { document.getElementById("blueEnergyArea").style.display = "none";}
 	var mult = 1;
 	user.blue.mults.forEach(getMult);
 	function getMult(value){
@@ -188,7 +189,7 @@ function updateAll(){
 		document.getElementById("addBlueButton").style.display = "";
 		document.getElementById("bluePrestigeButton").style.display = "none";
 	}
-	document.getElementById("bluePrestigeAmount").innerHTML = getBluePrestige();
+	document.getElementById("bluePrestigeAmount").innerHTML = getBluePrestige() + " Energy";
 }
 
 function clearSave(){
