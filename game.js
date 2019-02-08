@@ -167,7 +167,7 @@ function updateAll(){
 		}
 		document.getElementById("buttonSet"+i).style.display="block";	
 	}
-	for(var i=user.blue.mults.length+1;i<10;i++){
+	for(var i=user.blue.mults.length+1;i<=user.blue.indexLimit;i++){
 		document.getElementById("buttonSet"+i).style.display="none";
 	}
 	var dispAddBluePrice = display(user.blue.addButtonPrice);
