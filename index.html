@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script type="text/javascript" src="game.js"></script>
-        <script type="text/javascript" src="hyperion.js"></script>
+	<head>
+		<script type="text/javascript" src="game.js"></script>
+		<script type="text/javascript" src="hyperion.js"></script>
         <title>Color Wheels</title>
         <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body style="text-align:center" onLoad="startCycle()">
-        <div class="wrapper">
-            <div id="menu">
-                <button id="saveButton" onClick="save()" class="upgrade">Save your game</button>
+	</head>
+	<body style="text-align:center" onLoad="startCycle()">
+		<div class="wrapper">
+			<div id="menu">
+				<button id="saveButton" onClick="save()" class="upgrade">Save your game</button>
                 <button id="loadButton" onClick="alert('This doesn\'t work quite yet.')" class="upgrade">Load a save</button>
-		<button id="clearButton" onClick="clearSave()" class="upgrade">Delete your save file</button>
-	    	<div id="savedInfo" style="display:none">Game saved!</div>
-            </div>
-            <div id="powerAmount">Total Power: 0</div>
-	    <div id="bluePrestigeArea" style="display:none">Total Blue Energy: <span id="bluePrestigeAmount">0</span></div>
+				<button id="clearButton" onClick="clearSave()" class="upgrade">Delete your save file</button>
+				<div id="savedInfo" style="display:none">Game saved!</div>
+			</div>
+			<div id="powerAmount">Total Power: 0</div>
+			<div id="blueEnergyArea" style="display:none">Total Blue Energy: <span id="blueEnergyAmount">0</span></div>
             <div id="powerMultArea" onClick="testStuff()">Button Mult: x1</div>
             <div id="blueCycle">Reset Cycle: 0/1000</div>
             <div id="buttonSet1" class="lowerLayer">
-                <button id="blueCircle1" class="blueButtonSmall">x1</button>
+				<button id="blueCircle1" class="blueButtonSmall">x1</button>
                 <button id="upgrade1" onClick="checkButtonUpgrade(1)" style="opacity:0.6" class="upgrade">
-                    Upgrade your Blue Button<br/>Cost: 10 Power</button>
-            </div>
+					Upgrade your Blue Button<br/>Cost: 10 Power</button>
+			</div>
             <div id="buttonSet2" class="lowerLayer" style="display: none">
-                <button id="blueCircle2" class="blueButtonSmall">x1</button>
-                <button id="upgrade2" onClick="checkButtonUpgrade(2)" style="opacity:0.6" class="upgrade">
-                    Upgrade your Blue Button<br/>Cost: 100 Power</button>
-            </div>
+				<button id="blueCircle2" class="blueButtonSmall">x1</button>
+				<button id="upgrade2" onClick="checkButtonUpgrade(2)" style="opacity:0.6" class="upgrade">
+					Upgrade your Blue Button<br/>Cost: 100 Power</button>
+			</div>
             <div id="buttonSet3" class="lowerLayer" style="display:none">
                 <button id="blueCircle3" class="blueButtonSmall">x1</button>
                 <button id="upgrade3" onClick="checkButtonUpgrade(3)" style="opacity:0.6" class="upgrade">
@@ -69,11 +69,13 @@
                     Upgrade your Blue Button<br/>Cost: 1e9 Power</button>
             </div>
             <div class="topLayer">
-            	<button id="addBlueButton" onClick="checkAddBlue()" style="opacity:0.6" class="upgrade">
-                	Add another Blue Button<br/>Cost: 100 Power</button>
-		    	<button id="bluePrestigeButton" onClick="blueReset()" style="display:none" class="upgrade">
-					Reset your blue buttons and gain <span style="color:darkBlue">0 Energy</span>
-            </div>
+				<button id="addBlueButton" onClick="checkAddBlue()" style="opacity:0.6" class="upgrade">
+					Add another Blue Button<br/>Cost: 100 Power</button>
+				<button id="bluePrestigeButton" onClick="blueReset()" style="display:none" class="upgrade">
+					Reset your blue buttons and gain 
+					<span id="bluePrestigeAmount" style="color:darkBlue">0 Energy</span>
+				</button>
+			</div>
         </div>
     </body>
 </html>
