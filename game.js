@@ -7,10 +7,10 @@ function getDefaultUser() {
 			mults: [1],
 			limits: [10],
 			buttonPrice: [10],
-			upgrades:     ["CR" ,"CU" ,"LB" ,"BB" ],
-			upgradeCount: [0    ,0    ,0    ,0    ],
-			upgradePrices:["1e6","1e7","1e10","1e50"],
-			upgradeIncrease:[10 , 100 , 10   , 1],
+			upgrades:       ["CR","CU","LB","BB"],
+			upgradeCount:   [0   ,0   ,0   ,0   ],
+			upgradePrices:  [1   ,1   ,1   ,50  ],
+			upgradeIncrease:[10  ,10  ,10  ,1   ],
 			addButtonPrice: 100,
 			index: 1,
 			indexLimit: 10,
@@ -79,7 +79,7 @@ function checkButtonUpgrade(num) {
 function checkUpgrade(color, dex) {
 	let index = user[color].upgrades.indexOf(dex);
 	if(canBuyUpgrade(color, index)){
-		user.totPower = bigAdd(user.totPower, user[color].upgradePrices[index], 0);
+		user[color].energy = bigAdd(user[color].energy, user[color].upgradePrices[index], 0);
 		user[color].upgradeCount[index]++;
 		user[color].upgradePrices[index] = bigMult(user[color].upgradePrices[index], user[color].upgradeIncrease[index], 1);
 	}
@@ -87,7 +87,7 @@ function checkUpgrade(color, dex) {
 }
 
 function canBuyUpgrade(color, index) {
-	if(bigBigger(user.totPower, user[color].upgradePrice[index])) return true;
+	if(bigBigger(user[color].energy, user[color].upgradePrice[index])) return true;
 	else return false;
 }
 
