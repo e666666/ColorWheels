@@ -181,7 +181,7 @@ function updateAll(){
 	}
 	if(bigBigger(user.totPower,user.blue.addButtonPrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
 	else document.getElementById("addBlueButton").style.opacity = 0.6;
-	if(user.blue.index>user.blue.indexLimit) {
+	if(user.blue.index>=user.blue.indexLimit) {
 		document.getElementById("addBlueButton").style.display = "none";
 		document.getElementById("bluePrestigeButton").style.display = "";
 	} else {
