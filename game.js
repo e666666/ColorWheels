@@ -7,10 +7,12 @@ function getDefaultUser() {
 			mults: [1],
 			limits: [10],
 			buttonPrice: [10],
+			clicked: 0,
 			upgrades:       ["CR","CU","LB","BB"],
 			upgradeCount:   [0   ,0   ,0   ,0   ],
-			upgradePrices:  [1   ,1   ,1   ,50  ],
-			upgradeIncrease:[10  ,10  ,10  ,1   ],
+			upgradePrices:  [1   ,1   ,10  ,50  ],
+			upgradeIncrease:[10  ,10  ,0   ,50  ],
+			bonuses:        [10  ,1   ,0   ,0   ],
 			addButtonPrice: 100,
 			index: 1,
 			indexLimit: 10,
@@ -24,6 +26,7 @@ function getDefaultUser() {
 			addButtonPrice: 100,
 			index: 1,
 		},
+		currentTab: "mainTab",
 		lastTick: new Date().getTime(),
 	};
 }
@@ -37,32 +40,40 @@ function update(get, set) {
 function gameCycle(){
 	let now = new Date().getTime();
 	let diff = now - user.lastTick;
+	let tickMax = user.blue.tickMax*Math.pow(user.blue.bonuses[0],user.blue.upgradeCount[0]);
 	user.blue.tick+=diff;
-	if(user.blue.tick<1000){
+	if(user.blue.tick<user.blue.tickMax){
 		update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
 	}
 	else {
-		blueClick(Math.round(user.blue.tick/user.blue.tickMax));
+		process(Math.round(user.blue.tick/user.blue.tickMax));
 	}
 	user.lastTick = now;
 	updateAll();
 }
 
 function blueClick(num) {
-	var mult=1;
-	if(user.blue.tick>=user.blue.tickMax) {
-		user.blue.mults.forEach(getMult);
-		function getMult(value){
-			mult=bigMult(mult,value,1);
-		}
-		let tot = 0;
-		while(num>0) {
-			tot=bigAdd(tot,mult,1);
-			num-=1;
-		}
-		user.totPower=bigAdd(user.totPower,tot,1);
-		user.blue.tick=0;
+	if(user.blue.clicked!=0) {
+		user.blue.mults[user.blue.clicked-1]=user.blue.mults[user.blue.clicked-1].toString().substring(1);
 	}
+	let mid=user.blue.bonuses[1]*user.blue.upgradeCount[1];
+	user.blue.mults[num-1]=""+mid+user.blue.mults[num-1];
+	user.blue.clicked=num;
+}
+
+function process(num) {
+	var mult=1;
+	user.blue.mults.forEach(getMult);
+	function getMult(value){
+		mult=bigMult(mult,value,1);
+	}
+	let tot = 0;
+	while(num>0) {
+		tot=bigAdd(tot,mult,1);
+		num-=1;
+	}
+	user.totPower=bigAdd(user.totPower,tot,1);
+	user.blue.tick=0;
 }
 
 function checkButtonUpgrade(num) {
@@ -128,6 +139,19 @@ function blueReset() {
 	}
 }
 
+function showTab(tabName) { //Tab switching function
+	var tabs = document.getElementsByClassName('tab');
+	var tab;
+	for (var i = 0; i < tabs.length; i++) {
+		tab = tabs.item(i);
+		if (tab.id === tabName) {
+			tab.style.display = 'block';
+			user.currentTab = tabName;
+		}
+		else tab.style.display = 'none';
+	}
+}
+
 function save(){
 	localStorage.setItem("colorWheelsSave",JSON.stringify(user));
 	document.getElementById("savedInfo").style.display="inline";
@@ -160,6 +184,15 @@ function updateAll(){
 		update(name, "x"+user.blue.mults[i-1]);
 		var price=user.blue.buttonPrice[i-1];
 		price=display(price);
+		let buttons = document.getElementsByClassName("breakLimitButton");
+		var button;
+		for (var i = 0; i < buttons.length; i++) {
+			button = buttons.item(i);
+			if (user.blue.upgradeCount[2]>0) {
+				button.style.display = 'block';
+			}
+			else button.style.display = 'none';
+		}
 		if (bigBigger(user.blue.limits[i-1]-1,user.blue.mults[i-1])) {
 			update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
 		} else {
