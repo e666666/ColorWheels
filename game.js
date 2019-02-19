@@ -184,14 +184,14 @@ function updateAll(){
 		update(name, "x"+user.blue.mults[i-1]);
 		var price=user.blue.buttonPrice[i-1];
 		price=display(price);
-		let buttons = document.getElementsByClassName("breakLimitButton");
-		var button;
-		for (var i = 0; i < buttons.length; i++) {
-			button = buttons.item(i);
+		let bLButtons = document.getElementsByClassName("breakLimitButton");
+		var bLButton;
+		for (var i = 0; i < bLButtons.length; i++) {
+			bLButton = bLButtons.item(i);
 			if (user.blue.upgradeCount[2]>0) {
-				button.style.display = 'block';
+				bLButton.style.display = 'block';
 			}
-			else button.style.display = 'none';
+			else bLButton.style.display = 'none';
 		}
 		if (bigBigger(user.blue.limits[i-1]-1,user.blue.mults[i-1])) {
 			update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
