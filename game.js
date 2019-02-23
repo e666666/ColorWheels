@@ -225,6 +225,7 @@ function updateAll(){
 		document.getElementById("bluePrestigeButton").style.display = "none";
 	}
 	document.getElementById("bluePrestigeAmount").innerHTML = getBluePrestige() + " Energy";
+	showTab(user.currentTab);
 }
 
 function clearSave(){
