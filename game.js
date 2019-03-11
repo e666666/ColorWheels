@@ -53,11 +53,13 @@ function gameCycle(){
 }
 
 function blueClick(num) {
-	if(user.blue.clicked!=0) {
-		user.blue.mults[user.blue.clicked-1]=user.blue.mults[user.blue.clicked-1].toString().substring(1);
-	}
 	let mid=user.blue.bonuses[1]*user.blue.upgradeCount[1];
-	if(mid>0) user.blue.mults[num-1]=""+mid+user.blue.mults[num-1];
+	if(mid>0){
+		user.blue.mults[num-1]=""+mid+user.blue.mults[num-1];
+		if(user.blue.clicked!=0) {
+			user.blue.mults[user.blue.clicked-1]=user.blue.mults[user.blue.clicked-1].toString().substring(1);
+		}
+	}
 	user.blue.clicked=num;
 }
 
