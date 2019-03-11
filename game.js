@@ -185,6 +185,7 @@ function updateAll(){
 		var name = "blueCircle" + i;
 		update(name, "x"+user.blue.mults[i-1]);
 		var price=user.blue.buttonPrice[i-1];
+		update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+user.blue.buttonPrice[i]+" Power");
 		price=display(price);
 		let bLButtons = document.getElementsByClassName("breakLimitButton");
 		var bLButton;
