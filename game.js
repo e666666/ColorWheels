@@ -182,6 +182,7 @@ function updateAll(){
 	update("powerMultArea", "Button Mult: x"+dispMult);
 	update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
 	for(var i=1;i<user.blue.mults.length+1;i++){
+		document.getElementById("buttonSet"+i).style.display="block";
 		var name = "blueCircle" + i;
 		update(name, "x"+user.blue.mults[i-1]);
 		var price=user.blue.buttonPrice[i-1];
@@ -200,8 +201,7 @@ function updateAll(){
 			update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
 		} else {
 			update("upgrade"+i, "Max Multiplier!");
-		}
-		document.getElementById("buttonSet"+i).style.display="block";	
+		}	
 	}
 	for(var i=user.blue.mults.length+1;i<=user.blue.indexLimit;i++){
 		document.getElementById("buttonSet"+i).style.display="none";
