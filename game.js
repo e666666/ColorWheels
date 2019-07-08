@@ -204,7 +204,7 @@ function updateAll(){
 			document.getElementById("upgrade"+j).style.opacity = 0.6;
 		}
 	}
-	if(user.totPower.gte(user.blue.addButtonPrice) document.getElementById("addBlueButton").style.opacity = 1.0;
+	if(user.totPower.gte(user.blue.addButtonPrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
 	else document.getElementById("addBlueButton").style.opacity = 0.6;
 	if(user.blue.index>=user.blue.indexLimit) {
 		document.getElementById("addBlueButton").style.display = "none";
