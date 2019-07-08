@@ -31,7 +31,7 @@ function getDefaultUser() {
 	};
 }
 
-let user = getDefaultUser();
+var user = getDefaultUser();
 
 function update(get, set) {
 	document.getElementById(get).innerHTML=set;
