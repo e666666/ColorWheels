@@ -1,30 +1,30 @@
 function getDefaultUser() {
 	return {
-		totPower:0,
+		totPower:new Decimal(0),
 		blue: {
-			tick:0,
-			tickMax:1000,
-			mults: [1],
-			limits: [10],
-			buttonPrice: [10],
-			clicked: 0,
+			tick:new Decimal(0),
+			tickMax:new Decimal(1000),
+			mults: [new Decimal(1)],
+			limits: [new Decimal(10)],
+			buttonPrice: [new Decimal(10)],
+			clicked: new Decimal(0),
 			upgrades:       ["CR","CU","LB","BB"],
-			upgradeCount:   [0   ,0   ,0   ,0   ],
-			upgradePrices:  [1   ,1   ,10  ,50  ],
-			upgradeIncrease:[10  ,10  ,0   ,50  ],
-			bonuses:        [10  ,1   ,0   ,0   ],
-			addButtonPrice: 100,
-			index: 1,
-			indexLimit: 10,
-			energy: 0,
+			upgradeCount:   [new Decimal(0)   ,new Decimal(0)   ,new Decimal(0)   ,new Decimal(0)   ],
+			upgradePrices:  [new Decimal(1)   ,new Decimal(1)   ,new Decimal(10)  ,new Decimal(50)  ],
+			upgradeIncrease:[new Decimal(10)  ,new Decimal(10)  ,new Decimal(0)   ,new Decimal(50)  ],
+			bonuses:        [new Decimal(10)  ,new Decimal(1)   ,new Decimal(0)   ,new Decimal(0)   ],
+			addButtonPrice: new Decimal(100),
+			index: new Decimal(1),
+			indexLimit: new Decimal(10),
+			energy: new Decimal(0),
 		},
 		green: {
-			tick:0,
-			tickMax:1000,
-			mults: [1],
-			buttonPrice: [10],
-			addButtonPrice: 100,
-			index: 1,
+			tick:new Decimal(0),
+			tickMax:new Decimal(1000),
+			mults: [new Decimal(1)],
+			buttonPrice: [new Decimal(10)],
+			addButtonPrice: new Decimal(100),
+			index: new Decimal(1),
 		},
 		currentTab: "mainTab",
 		lastTick: new Date().getTime(),
@@ -40,21 +40,21 @@ function update(get, set) {
 function gameCycle(){
 	let now = new Date().getTime();
 	let diff = now - user.lastTick;
-	let tickMax = user.blue.tickMax*Math.pow(user.blue.bonuses[0],user.blue.upgradeCount[0]);
-	user.blue.tick+=diff;
-	if(user.blue.tick<user.blue.tickMax){
-		update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
+	let tickMax = user.blue.tickMax.times(Decimal.pow(user.blue.bonuses[0],user.blue.upgradeCount[0]));
+	user.blue.tick = user.blue.tick.plus(diff);
+	if(user.blue.tick.lt(user.blue.tickMax)) {
+		update("blueCycle", `Reset Cycle: ${user.blue.tick}/${user.blue.tickMax}`);
 	}
 	else {
-		process(Math.round(user.blue.tick/user.blue.tickMax));
+		process(Decimal.round(user.blue.tick.div(user.blue.tickMax)));
 	}
 	user.lastTick = now;
 	updateAll();
 }
 
 function blueClick(num) {
-	let mid=user.blue.bonuses[1]*user.blue.upgradeCount[1];
-	if(mid>0){
+	let mid=user.blue.bonuses[1].times(user.blue.upgradeCount[1]);
+	if(mid.gt(0)){
 		user.blue.mults[num-1]=""+mid+user.blue.mults[num-1];
 		if(user.blue.clicked!=0) {
 			user.blue.mults[user.blue.clicked-1]=user.blue.mults[user.blue.clicked-1].toString().substring(1);
