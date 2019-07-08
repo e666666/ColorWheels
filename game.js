@@ -42,12 +42,8 @@ function gameCycle(){
 	let diff = now - user.lastTick;
 	let tickMax = user.blue.tickMax.times(Decimal.pow(user.blue.bonuses[0],user.blue.upgradeCount[0]));
 	user.blue.tick += diff;
-	if(user.blue.tick.lt(user.blue.tickMax)) {
-		update("blueCycle", `Reset Cycle: ${user.blue.tick}/${user.blue.tickMax}`);
-	}
-	else {
-		process(Decimal.round(user.blue.tick.div(user.blue.tickMax)));
-	}
+	if(user.blue.tick >= user.blue.tickMax) process(Decimal.round(user.blue.tick.div(user.blue.tickMax)));
+	update("blueCycle", `Reset Cycle: ${user.blue.tick}/${user.blue.tickMax}`);
 	user.lastTick = now;
 	updateAll();
 }
