@@ -2,19 +2,19 @@ function getDefaultUser() {
 	return {
 		totPower:new Decimal(0),
 		blue: {
-			tick:new Decimal(0),
+			tick:0,
 			tickMax:new Decimal(1000),
 			mults: [new Decimal(1)],
 			limits: [new Decimal(10)],
 			buttonPrice: [new Decimal(10)],
-			clicked: new Decimal(0),
+			clicked: 0,
 			upgrades:       ["CR","CU","LB","BB"],
 			upgradeCount:   [new Decimal(0)   ,new Decimal(0)   ,new Decimal(0)   ,new Decimal(0)   ],
 			upgradePrices:  [new Decimal(1)   ,new Decimal(1)   ,new Decimal(10)  ,new Decimal(50)  ],
 			upgradeIncrease:[new Decimal(10)  ,new Decimal(10)  ,new Decimal(0)   ,new Decimal(50)  ],
 			bonuses:        [new Decimal(10)  ,new Decimal(1)   ,new Decimal(0)   ,new Decimal(0)   ],
 			addButtonPrice: new Decimal(100),
-			index: new Decimal(1),
+			index: 1,
 			indexLimit: new Decimal(10),
 			energy: new Decimal(0),
 		},
@@ -54,37 +54,31 @@ function gameCycle(){
 
 function blueClick(num) {
 	let mid=user.blue.bonuses[1].times(user.blue.upgradeCount[1]);
-	if(mid.gt(0)){
-		user.blue.mults[num-1]=""+mid+user.blue.mults[num-1];
-		if(user.blue.clicked!=0) {
-			user.blue.mults[user.blue.clicked-1]=user.blue.mults[user.blue.clicked-1].toString().substring(1);
+	if(mid.gt(new Decimal(0))){
+		user.blue.mults[num-1]=new Decimal(""+mid+user.blue.mults[num-1]);
+		if(user.blue.clicked.neq(new Decimal(0))) {
+			user.blue.mults[user.blue.clicked-1]=new Decimal(user.blue.mults[user.blue.clicked-1].toString().substring(1));
 		}
 	}
 	user.blue.clicked=num;
 }
 
 function process(num) {
-	var mult=1;
-	user.blue.mults.forEach(getMult);
-	function getMult(value){
-		mult=bigMult(mult,value,1);
-	}
-	let tot = 0;
-	while(num>0) {
-		tot=bigAdd(tot,mult,1);
-		num-=1;
-	}
-	user.totPower=bigAdd(user.totPower,tot,1);
+	var mult=new Decimal(1);
+	user.blue.mults.forEach(function(value) {
+		mult = mult.times(value)
+	});
+	let tot = mult.times(num)
+	user.totPower = user.totPower.plus(tot)
 	user.blue.tick=0;
 }
 
 function checkButtonUpgrade(num) {
 	var price=user.blue.buttonPrice[num-1];
-	if(bigBigger(user.totPower,price)&&bigBigger(user.blue.limits[num-1]-1,user.blue.mults[num-1])){
-		user.totPower=bigAdd(user.totPower,price,0);
-		user.blue.mults[num-1]=user.blue.mults[num-1]+1;
-		price=bigMult(price,2.5,1);
-		user.blue.buttonPrice[num-1]=price;
+	if(user.totPower.gte(price)&&user.blue.limits[num-1].gt(user.blue.mults[num-1])) {
+		user.totPower = user.totPower.minus(prize);
+		user.blue.mults[num-1] = user.blue.mults[num-1].plus(new Decimal(1));
+		user.blue.buttonPrice[num-1] = price.times(new Decimal(2.5));
 	}
 	updateAll();
 }
@@ -92,26 +86,25 @@ function checkButtonUpgrade(num) {
 function checkUpgrade(color, dex) {
 	let index = user[color].upgrades.indexOf(dex);
 	if(canBuyUpgrade(color, index)){
-		user[color].energy = bigAdd(user[color].energy, user[color].upgradePrices[index], 0);
-		user[color].upgradeCount[index]++;
-		user[color].upgradePrices[index] = bigMult(user[color].upgradePrices[index], user[color].upgradeIncrease[index], 1);
+		user[color].energy = user[color].energy.minus(user[color].upgradePrices[index]);
+		user[color].upgradeCount[index] = user[color].upgradeCount[index].plus(1);
+		user[color].upgradePrices[index] = user[color].upgradePrices[index].times(user[color].upgradeIncrease[index]);
 	}
 	updateAll();
 }
 
 function canBuyUpgrade(color, index) {
-	if(bigBigger(user[color].energy, user[color].upgradePrice[index])) return true;
-	else return false;
+	return user[color].energy.gte(user[color].upgradePrice[index])
 }
 
 function checkAddBlue() {
 	if(user.blue.index<10){
-		if(bigBigger(user.totPower,user.blue.addButtonPrice)){
-			user.totPower=bigAdd(user.totPower,user.blue.addButtonPrice,0);
+		if(user.totPower.gte(user.blue.addButtonPrice)){
+			user.totPower = user.totPower.minus(user.blue.addButtonPrice)
 			user.blue.index++;
 			document.getElementById("buttonSet"+user.blue.index).style.display="block";
-			user.blue.mults.push(2);
-			user.blue.limits.push(10);
+			user.blue.mults.push(new Decimal(2));
+			user.blue.limits.push(new Decimal(10));
 			user.blue.buttonPrice.push(display("1e"+user.blue.index));
 			user.blue.addButtonPrice=bigMult(user.blue.addButtonPrice,10,1);
 		}
