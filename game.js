@@ -193,7 +193,7 @@ function updateAll(){
 		document.getElementById("buttonSet"+i).style.display="none";
 	}
 	var dispAddBluePrice = display(user.blue.addButtonPrice);
-	update("addBlueButton", `Add another Blue Button<br/>Cost: ${dispAddBluePrize} Power`);
+	update("addBlueButton", `Add another Blue Button<br/>Cost: ${dispAddBluePrice} Power`);
 	for(i=0;i<user.blue.buttonPrice.length;i++){
 		if(user.totPower.gte(user.blue.buttonPrice[i])||user.blue.mults[i].eq(user.blue.limits[1])) {
 			var j = i+1;
