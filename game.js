@@ -76,7 +76,7 @@ function process(num) {
 function checkButtonUpgrade(num) {
 	var price=user.blue.buttonPrice[num-1];
 	if(user.totPower.gte(price)&&user.blue.limits[num-1].gt(user.blue.mults[num-1])) {
-		user.totPower = user.totPower.minus(prize);
+		user.totPower = user.totPower.minus(price);
 		user.blue.mults[num-1] = user.blue.mults[num-1].plus(new Decimal(1));
 		user.blue.buttonPrice[num-1] = price.times(new Decimal(2.5));
 	}
