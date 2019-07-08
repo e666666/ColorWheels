@@ -63,12 +63,16 @@ function blueClick(num) {
 	user.blue.clicked=num;
 }
 
-function process(num) {
+function getBlueButtonTotalMult() {
 	var mult=new Decimal(1);
 	user.blue.mults.forEach(function(value) {
 		mult = mult.times(value)
 	});
-	let tot = mult.times(num)
+	return mult
+}
+
+function process(num) {
+	let tot = getBlueButtonTotalMult().times(num)
 	user.totPower = user.totPower.plus(tot)
 	user.blue.tick=0;
 }
@@ -105,28 +109,25 @@ function checkAddBlue() {
 			document.getElementById("buttonSet"+user.blue.index).style.display="block";
 			user.blue.mults.push(new Decimal(2));
 			user.blue.limits.push(new Decimal(10));
-			user.blue.buttonPrice.push(display("1e"+user.blue.index));
-			user.blue.addButtonPrice=bigMult(user.blue.addButtonPrice,10,1);
+			user.blue.buttonPrice.push(Decimal.pow(new Decimal(10),new Decimal(user.blue.index)).times(new Decimal(2.5)));
+			user.blue.addButtonPrice = user.blue.addButtonPrice.times(10);
 		}
 	}
 	updateAll();
 }
 
 function getBluePrestige() {
-	if(bigBigger(user.totPower, 1e10)){
-		let pow = ""+user.totPower;
-		return bigAdd(pow.split("e")[1],9,0);
-	}
-	else return 0;
+	if (user.totPower.gte(new Decimal(1e10))) return user.totPower.log10().minus(9);
+	else return new Decimal(0);
 }
 
 function blueReset() {
-	if(bigBigger(getBluePrestige(),1)){
-		let energy = user.blue.energy + getBluePrestige();
+	if(getBluePrestige().gte(1)){
+		let energy = user.blue.energy.plus(getBluePrestige());
 		let count = user.blue.upgradeCount;
 		let prices = user.blue.upgradePrices;
 		user.blue = getDefaultUser().blue;
-		user.totPower = 0;
+		user.totPower = new Decimal(0);
 		user.blue.energy = energy;
 		user.blue.upgradeCount = count;
 		user.blue.upgradePrices = prices;
@@ -161,26 +162,18 @@ function load(){
 
 function updateAll(){
 	update("powerAmount", "Total Power: "+display(user.totPower));
-	if(bigBigger(user.blue.energy,1)){
+	if(user.blue.energy.gte(1)){
 		document.getElementById("blueEnergyArea").style.display = "";
 		document.getElementById("blueEnergyAmount").innerHTML = display(user.blue.energy);
 	}
 	else { document.getElementById("blueEnergyArea").style.display = "none";}
-	var mult = 1;
-	user.blue.mults.forEach(getMult);
-	function getMult(value){
-		mult=bigMult(mult,value,1);
-	}
-	var dispMult = display(mult);
+	var dispMult = display(getBlueButtonTotalMult());
 	update("powerMultArea", "Button Mult: x"+dispMult);
-	update("blueCycle", "Reset Cycle: "+user.blue.tick+"/"+user.blue.tickMax);
+	update("blueCycle", `Reset Cycle: ${user.blue.tick}/${user.blue.tickMax}`);
 	for(var i=1;i<user.blue.mults.length+1;i++){
 		document.getElementById("buttonSet"+i).style.display="block";
 		var name = "blueCircle" + i;
-		update(name, "x"+user.blue.mults[i-1]);
-		var price=user.blue.buttonPrice[i-1];
-		update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+user.blue.buttonPrice[i-1]+" Power");
-		price=display(price);
+		update(name, "x"+display(user.blue.mults[i-1]));
 		let bLButtons = document.getElementsByClassName("breakLimitButton");
 		var bLButton;
 		for (var j = 0; j < bLButtons.length; j++) {
@@ -190,8 +183,8 @@ function updateAll(){
 			}
 			else bLButton.style.display = 'none';
 		}
-		if (bigBigger(user.blue.limits[i-1]-1,user.blue.mults[i-1])) {
-			update("upgrade"+i, "Upgrade your Blue Button<br/>Cost: "+price+" Power");
+		if (user.blue.limits[i-1].gt(user.blue.mults[i-1])) {
+			update("upgrade"+i, `Upgrade your Blue button<br/>Cost: ${display(user.blue.buttonPrice[i-1])} Power`);
 		} else {
 			update("upgrade"+i, "Max Multiplier!");
 		}	
@@ -200,9 +193,9 @@ function updateAll(){
 		document.getElementById("buttonSet"+i).style.display="none";
 	}
 	var dispAddBluePrice = display(user.blue.addButtonPrice);
-	update("addBlueButton", "Add another Blue Button<br/>Cost: "+dispAddBluePrice+" Power");
+	update("addBlueButton", `Add another Blue Button<br/>Cost: ${dispAddBluePrize} Power`);
 	for(i=0;i<user.blue.buttonPrice.length;i++){
-		if(bigBigger(user.totPower,user.blue.buttonPrice[i])||user.blue.mults[i]==user.blue.limits[1]){
+		if(user.totPower.gte(user.blue.buttonPrice[i])||user.blue.mults[i].eq(user.blue.limits[1])) {
 			var j = i+1;
 			document.getElementById("upgrade"+j).style.opacity = 1.0;
 		}
@@ -211,7 +204,7 @@ function updateAll(){
 			document.getElementById("upgrade"+j).style.opacity = 0.6;
 		}
 	}
-	if(bigBigger(user.totPower,user.blue.addButtonPrice)) document.getElementById("addBlueButton").style.opacity = 1.0;
+	if(user.totPower.gte(user.blue.addButtonPrice) document.getElementById("addBlueButton").style.opacity = 1.0;
 	else document.getElementById("addBlueButton").style.opacity = 0.6;
 	if(user.blue.index>=user.blue.indexLimit) {
 		document.getElementById("addBlueButton").style.display = "none";
@@ -220,7 +213,7 @@ function updateAll(){
 		document.getElementById("addBlueButton").style.display = "";
 		document.getElementById("bluePrestigeButton").style.display = "none";
 	}
-	document.getElementById("bluePrestigeAmount").innerHTML = getBluePrestige() + " Energy";
+	document.getElementById("bluePrestigeAmount").innerHTML = display(getBluePrestige()) + " Energy";
 	showTab(user.currentTab);
 }
 
