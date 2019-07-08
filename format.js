@@ -36,6 +36,8 @@ shortenMoney = function (money) {
   return formatValue(money, 2, 1);
 };
 
+display = shortenMoney
+
 function timeDisplay(time) {
   if (time <= 100) return (time).toFixed(3) + " seconds"
   if (time >= 31536000) {
