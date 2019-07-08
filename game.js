@@ -149,14 +149,14 @@ function showTab(tabName) { //Tab switching function
 }
 
 function save(){
-	localStorage.setItem("colorWheelsSave",JSON.stringify(user));
+	saveGame()
 	document.getElementById("savedInfo").style.display="inline";
 	function foo() {document.getElementById("savedInfo").style.display="none"}
 	setTimeout(foo, 2000);
 }
 
 function load(){
-	if(localStorage.getItem("colorWheelsSave") !== null) user = JSON.parse(localStorage.getItem("colorWheelsSave"));
+	if(localStorage.getItem("colorWheelsSave") !== null) loadGame(localStorage.getItem("colorWheelsSave"));
 	return user;
 }
 
@@ -229,5 +229,5 @@ function startCycle(){
 	load();
 	updateAll();
 	setInterval(gameCycle, 10);
-	setInterval(save, 30000);
+	setInterval(save, 5000);
 }
